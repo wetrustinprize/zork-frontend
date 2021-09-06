@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+:root {
+  --green-500: #8ce895;
+
+  --white-900: #fff;
+  --white-500: #f1f1f1;
+
+  --gray-500: #cdcdcd;
+  --gray-200: #939393;
+
+  --black: #000;
+}
+
+body,
+input,
+textarea,
+select,
+button {
+  font: 400 16px "Poppins", sans-serif;
+}
+
+body {
+  background-color: var(--white-900);
+  color: var(--black);
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

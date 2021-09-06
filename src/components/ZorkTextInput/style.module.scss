@@ -1,0 +1,31 @@
+.zInputText {
+  width: 418px;
+  height: 48px;
+
+  background-color: var(--white-900);
+
+  display: flex;
+  align-items: center;
+
+  input {
+    height: 100%;
+    width: 100%;
+
+    font-size: 22px;
+
+    border: 0;
+  }
+
+  svg {
+    margin: 0 12px;
+  }
+
+  div {
+    background-color: var(--black);
+
+    width: 1px;
+    height: 35px;
+
+    margin: 0 12px 0 0;
+  }
+}
