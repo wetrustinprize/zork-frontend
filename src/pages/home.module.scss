@@ -1,6 +1,24 @@
-.login {
-  max-width: 522px;
-  margin: 0 auto;
+.login_screen {
+  width: 100vw;
+  height: 100vh;
 
-  background-color: green;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login,
+.register {
+  flex: 1 1 auto;
+  margin: 0 30px;
+
+  max-width: 522px;
+
+  background-color: var(--white-500);
+
+  padding: 6px;
+
+  > * {
+    margin: 12px;
+  }
 }
