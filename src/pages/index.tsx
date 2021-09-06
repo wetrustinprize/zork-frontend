@@ -17,16 +17,36 @@ const Home: React.FC = () => {
       <main className={styles.login_screen}>
         <div className={styles.login}>
           <h1>Login</h1>
-          <ZorkTextInput type="text" icon={<AiOutlineMail size="20px" />} />
-          <ZorkTextInput type="password" icon={<BsLock size="20px" />} />
+          <ZorkTextInput
+            type="text"
+            placeholder="Your email"
+            icon={<AiOutlineMail size="20px" />}
+          />
+          <ZorkTextInput
+            type="password"
+            placeholder="Your password"
+            icon={<BsLock size="20px" />}
+          />
           <ZorkButton text="Login" />
         </div>
 
         <div className={styles.register}>
           <h1>Register</h1>
-          <ZorkTextInput type="text" icon={<BsPerson size="20px" />} />
-          <ZorkTextInput type="text" icon={<AiOutlineMail size="20px" />} />
-          <ZorkTextInput type="password" icon={<BsLock size="20px" />} />
+          <ZorkTextInput
+            type="text"
+            placeholder="Your full name"
+            icon={<BsPerson size="20px" />}
+          />
+          <ZorkTextInput
+            type="text"
+            placeholder="Your email"
+            icon={<AiOutlineMail size="20px" />}
+          />
+          <ZorkTextInput
+            type="password"
+            placeholder="Your password"
+            icon={<BsLock size="20px" />}
+          />
           <ZorkButton text="Register" />
         </div>
       </main>
