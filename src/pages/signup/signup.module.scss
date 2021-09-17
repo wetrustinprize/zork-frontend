@@ -1,0 +1,23 @@
+.signup_screen {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.signup {
+  flex: 1 1 auto;
+  margin: 0 30px;
+
+  max-width: 522px;
+
+  background-color: var(--white-500);
+
+  padding: 6px;
+
+  > * {
+    margin: 12px;
+  }
+}
