@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
 
-  input {
+  > input {
     flex: 1 1 auto;
 
     height: 100%;
@@ -16,13 +16,13 @@
     border: 0;
   }
 
-  svg {
+  > svg {
     flex: 0 0 auto;
 
     margin: 0 12px;
   }
 
-  div {
+  > div {
     flex: 0 0 auto;
 
     background-color: var(--black);
