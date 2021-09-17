@@ -1,11 +1,4 @@
 import Head from "next/head";
-import ZorkButton from "../components/ZorkButton";
-import ZorkTextInput from "../components/ZorkTextInput";
-
-import styles from "./home.module.scss";
-
-import { AiOutlineMail } from "react-icons/ai";
-import { BsLock, BsPerson } from "react-icons/bs";
 
 const Home: React.FC = () => {
   return (
@@ -14,42 +7,7 @@ const Home: React.FC = () => {
         <title>NextJS template</title>
       </Head>
 
-      <main className={styles.login_screen}>
-        <div className={styles.login}>
-          <h1>Login</h1>
-          <ZorkTextInput
-            type="text"
-            placeholder="Your email"
-            icon={<AiOutlineMail size="20px" />}
-          />
-          <ZorkTextInput
-            type="password"
-            placeholder="Your password"
-            icon={<BsLock size="20px" />}
-          />
-          <ZorkButton text="Login" />
-        </div>
-
-        <div className={styles.register}>
-          <h1>Register</h1>
-          <ZorkTextInput
-            type="text"
-            placeholder="Your full name"
-            icon={<BsPerson size="20px" />}
-          />
-          <ZorkTextInput
-            type="text"
-            placeholder="Your email"
-            icon={<AiOutlineMail size="20px" />}
-          />
-          <ZorkTextInput
-            type="password"
-            placeholder="Your password"
-            icon={<BsLock size="20px" />}
-          />
-          <ZorkButton text="Register" />
-        </div>
-      </main>
+      <h1>Hello world.</h1>
     </>
   );
 };
