@@ -25,6 +25,7 @@ textarea,
 select,
 button {
   font: 400 16px "Poppins", sans-serif;
+  border: 0;
 }
 
 body {
@@ -32,10 +33,8 @@ body {
   color: var(--black);
 }
 
-input,
 button {
   cursor: pointer;
-  border: 0;
 }
 
 a {
