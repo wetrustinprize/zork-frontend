@@ -14,6 +14,7 @@ import { loginUser } from "src/Services/User/loginUser";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 import { useCookies } from "react-cookie";
 import { checkLogged } from "src/Services/User/checkLogged";
 import { useRouter } from "next/dist/client/router";
@@ -36,12 +37,12 @@ const Login: React.FC = () => {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await loginUser({ email, password });
+    const data = await loginUser({ email, password });
 
-    if (response.error) {
-      toast.error(response.error);
+    if (data.error) {
+      toast.error(data.error);
     } else {
-      setCookie("user", response.access_token, {
+      setCookie("user", data.access_token, {
         path: "/",
         sameSite: true,
         maxAge: 86400,
@@ -79,6 +80,7 @@ const Login: React.FC = () => {
           <ZorkButton text="Login" isSubmit />
         </form>
       </main>
+
       <ToastContainer position="top-center" />
     </>
   );
