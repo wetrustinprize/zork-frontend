@@ -1,0 +1,64 @@
+.zorkSidebar {
+  background-color: var(--white-500);
+
+  height: 100%;
+  width: 306px;
+
+  display: flex;
+  flex-direction: column;
+
+  > h1 {
+    margin-left: 32px;
+  }
+
+  > main {
+    margin: auto 0;
+  }
+}
+
+.zorkSidebarButton {
+  display: flex;
+
+  font-size: 22px;
+  align-items: center;
+
+  margin: 32px 0;
+
+  > * {
+    margin-right: 10px;
+  }
+
+  > label {
+    background-color: var(--green-500);
+
+    font-size: 16px;
+    color: white;
+
+    padding: 0 16px;
+    border-radius: 16px;
+  }
+
+  > div {
+    height: 74px;
+    width: 6px;
+
+    background-color: var(--green-500);
+  }
+}
+
+.zorkSidebarLogoutButton {
+  > svg {
+    margin: auto;
+
+    color: white;
+  }
+
+  height: 54px;
+  width: 54px;
+
+  div.test {
+    background-color: pink;
+  }
+
+  background-color: var(--green-500);
+}
