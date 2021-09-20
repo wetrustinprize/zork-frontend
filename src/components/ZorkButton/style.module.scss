@@ -9,4 +9,14 @@
   font-size: 22px;
   font-weight: bold;
   color: white;
+
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: var(--green-400);
+  }
+
+  &:active {
+    background-color: var(--green-300);
+  }
 }

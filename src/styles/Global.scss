@@ -7,6 +7,8 @@
 
 :root {
   --green-500: #8ce895;
+  --green-400: #86db8e;
+  --green-300: #7fce87;
 
   --white-900: #fff;
   --white-500: #f1f1f1;
@@ -30,6 +32,7 @@ body {
   color: var(--black);
 }
 
+input,
 button {
   cursor: pointer;
   border: 0;
