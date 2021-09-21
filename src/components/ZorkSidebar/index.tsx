@@ -23,7 +23,7 @@ const ZorkSidebarButton: React.FC<IZorkSidebarButton> = ({
 }: IZorkSidebarButton) => {
   return (
     <button className={style.zorkSidebarButton}>
-      <div className="test" />
+      <div className={selected ? style.selected : undefined} />
       {icon}
       <p>{text}</p>
       {textBubble != "" ? <label>{textBubble}</label> : <></>}
@@ -43,7 +43,9 @@ const ZorkSidebarLogoutButton: React.FC<IZorkSidebarLogoutButton> = () => {
 const ZorkSidebar: React.FC = () => {
   return (
     <div className={style.zorkSidebar}>
-      <h1>Zork</h1>
+      <header>
+        <h1>Zork</h1>
+      </header>
 
       <main>
         <ZorkSidebarButton icon={<AiOutlineHome size="32px" />} text="Home" />
@@ -60,7 +62,9 @@ const ZorkSidebar: React.FC = () => {
         />
       </main>
 
-      <ZorkSidebarLogoutButton />
+      <footer>
+        <ZorkSidebarLogoutButton />
+      </footer>
     </div>
   );
 };
