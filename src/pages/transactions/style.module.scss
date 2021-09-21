@@ -1,0 +1,18 @@
+.container {
+  margin-left: 32px;
+  padding: 34px;
+
+  flex: 1 0 auto;
+
+  background-color: var(--white-500);
+
+  > main {
+    height: 100%;
+    overflow-y: auto;
+  }
+
+  > h1 {
+    font-size: 36px;
+    font-weight: normal;
+  }
+}
