@@ -10,13 +10,13 @@ import ZorkButton from "@components/ZorkButton";
 
 import { useState } from "react";
 
-import { loginUser } from "src/Services/User/loginUser";
+import { loginUser } from "src/services/User/loginUser";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useCookies } from "react-cookie";
-import { checkLogged } from "src/Services/User/checkLogged";
+import { checkLogged } from "src/services/User/checkLogged";
 import { useRouter } from "next/dist/client/router";
 
 const Login: React.FC = () => {

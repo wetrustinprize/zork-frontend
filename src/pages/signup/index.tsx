@@ -9,7 +9,7 @@ import { BsLock, BsPerson } from "react-icons/bs";
 import styles from "./signup.module.scss";
 
 import { useState } from "react";
-import { registerUser } from "src/Services/User/registerUser";
+import { registerUser } from "src/services/User/registerUser";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
