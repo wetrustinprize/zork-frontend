@@ -1,14 +1,15 @@
-import { AppProps } from "next/app";
 import { CookiesProvider } from "react-cookie";
 import "../styles/Global.scss";
 
-const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
-  return (
-    <>
-      <CookiesProvider>
-        <Component {...pageProps} />
-      </CookiesProvider>
-    </>
+import { AppPropsWithLayout } from "@pages/utils";
+
+const MyApp: React.FC<AppPropsWithLayout> = ({ Component, pageProps }) => {
+  const getLayout = Component.getLayout ?? ((page) => page);
+
+  return getLayout(
+    <CookiesProvider>
+      <Component {...pageProps} />
+    </CookiesProvider>
   );
 };
 
