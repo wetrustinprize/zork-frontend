@@ -6,9 +6,32 @@
 
   background-color: var(--white-500);
 
+  display: flex;
+  flex-direction: column;
+
   > main {
     height: 100%;
     overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 14px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: var(--gray-600);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--green-500);
+
+      &:hover {
+        background: var(--green-400);
+      }
+
+      &:active {
+        background: var(--green-300);
+      }
+    }
   }
 
   > h1 {
