@@ -1,12 +1,19 @@
+import ZorkLayout from "@components/ZorkLayout";
 import ZorkSidebar from "@components/ZorkSidebar";
+import { NextPageWithLayout } from "@pages/utils";
 
-import style from "./style.module.scss";
+import type { ReactElement } from "react";
 
-const Transactions: React.FC = () => {
+const Transactions: NextPageWithLayout = () => {
+  return <></>;
+};
+
+Transactions.getLayout = (page: ReactElement) => {
   return (
-    <main className={style.transaction_screen}>
+    <ZorkLayout>
       <ZorkSidebar />
-    </main>
+      {page}
+    </ZorkLayout>
   );
 };
 
