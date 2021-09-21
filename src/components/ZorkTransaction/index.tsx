@@ -1,29 +1,40 @@
 import style from "./style.module.scss";
 
 import { FaExchangeAlt } from "react-icons/fa";
+import { format } from "date-fns";
 
-const ZorkTransaction: React.FC = () => {
+interface IZorkTransaction {
+  transaction: any;
+}
+
+const ZorkTransaction: React.FC<IZorkTransaction> = ({
+  transaction,
+}: IZorkTransaction) => {
+  const { from_user, to_user, description, zorks, created_at } = transaction;
+  const date = new Date(created_at);
+
   return (
     <div className={style.zorkTransaction}>
       <div className={style.zorkIcons}>
         <div className={style.zorkIcon}>
-          <p>L</p>
+          <p>{from_user.first_name[0]}</p>
         </div>
         <FaExchangeAlt size="28px" />
         <div className={style.zorkIcon}>
-          <p>G</p>
+          <p>{to_user.first_name[0]}</p>
         </div>
       </div>
 
       <div className={style.zorkInfo}>
         <header>
-          <b>@Lorena</b> sent <b>30Ƶ</b> to <b>@Gustavo!</b>
+          <b>@{from_user.first_name}</b> sent <b>{zorks}Ƶ</b> to{" "}
+          <b>@{to_user.first_name}!</b>
         </header>
-        <footer>Aquele dinheiro que perdi na aposta.</footer>
+        <footer>{description}</footer>
       </div>
 
       <div className={style.zorkTimestamp}>
-        <p>Dec. 29, 2:35 PM</p>
+        <p>{format(date, "MMM. d, h:mm aa")}</p>
       </div>
     </div>
   );
