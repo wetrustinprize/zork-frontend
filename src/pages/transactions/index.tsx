@@ -3,7 +3,7 @@ import ZorkSidebar from "@components/ZorkSidebar";
 import ZorkTransaction from "@components/ZorkTransaction";
 
 import { getTransactions } from "@services/Transactions/getTransactions";
-import { getAuthenticated } from "@services/User/getAuthenticated";
+import { useUser } from "@services/User/useUser";
 
 import { NextPageWithLayout } from "@pages/utils";
 import { useState, useEffect } from "react";
@@ -15,7 +15,7 @@ import style from "./style.module.scss";
 const Transactions: NextPageWithLayout = () => {
   const [transactions, setTransactions] = useState([]);
 
-  const { access_token, user } = getAuthenticated();
+  const { access_token, user } = useUser();
 
   if (!access_token) {
     return <>Loading</>;

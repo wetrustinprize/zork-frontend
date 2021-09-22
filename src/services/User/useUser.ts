@@ -7,7 +7,12 @@ import { api } from "src/utils/api";
 
 import type { User } from "./utils";
 
-const getAuthenticated = (
+/**
+ * Checks if the user is authenticated by looking at their cookies.
+ * @param ignoreRedirect Should ignore the redirection to '/login'?
+ * @returns The access token and the user object
+ */
+const useUser = (
   ignoreRedirect: boolean = false
 ): { access_token: string; user: User } => {
   const [cookie] = useCookies(["access_token"]);
@@ -50,4 +55,4 @@ const getAuthenticated = (
   return { access_token: cookie.access_token, user };
 };
 
-export { getAuthenticated };
+export { useUser };
