@@ -8,34 +8,57 @@ import { api } from "src/utils/api";
 import type { User } from "./utils";
 
 /**
- * Checks if the user is authenticated by looking at their cookies.
- * @param ignoreRedirect Should ignore the redirection to '/login'?
- * @returns The access token and the user object
+ *
+ * @param redirectTo The url to redirect if use is not authenticated, if set to undefined, it doesn't redirect to any page. Default: undefined.
+ * @param redirectIfFound Should redirect if found user instead of if not found? Default: false.
+ * @returns The access token and the User object
  */
 const useUser = (
-  ignoreRedirect: boolean = false
+  redirectTo: string = undefined,
+  redirectIfFound: boolean = false
 ): { access_token: string; user: User } => {
   const [cookie] = useCookies(["access_token"]);
-  const [user, setUser] = useState({} as User);
+  const [user, setUser] = useState(undefined as User);
 
   useEffect(() => {
+    if (!redirectTo) {
+      return;
+    }
+
+    // Needed a async function to execute axios
     async function checkValidToken() {
       try {
+        // Try to fetch User information
         const response = await api.get("/user", {
           headers: {
             authorization: "Bearer " + cookie.access_token,
           },
         });
 
+        // Sets the new User information
         setUser(response.data);
+
+        // Check if should redirect if found User
+        if (redirectIfFound) {
+          Router.push(redirectTo);
+          return;
+        }
       } catch (err) {
+        // Check if is a axios http error
         if (!err.response) {
           throw err;
         }
 
-        if (err.response == 403) {
-          Router.push("/login");
-          return;
+        // Check if is code 403
+        if (err.response.status == 403) {
+          // Check if should redirect if not found
+          if (!redirectIfFound) {
+            Router.push(redirectTo);
+            return;
+          } else {
+            setUser({} as User);
+            return;
+          }
         } else {
           throw err;
         }
@@ -43,8 +66,8 @@ const useUser = (
     }
 
     // check if has access_token cookie
-    if (!cookie.access_token && !ignoreRedirect) {
-      Router.push("/login");
+    if (!cookie.access_token && !redirectIfFound) {
+      Router.push(redirectTo);
       return;
     }
 

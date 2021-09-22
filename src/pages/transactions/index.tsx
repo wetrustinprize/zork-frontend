@@ -15,11 +15,7 @@ import style from "./style.module.scss";
 const Transactions: NextPageWithLayout = () => {
   const [transactions, setTransactions] = useState([]);
 
-  const { access_token, user } = useUser();
-
-  if (!access_token) {
-    return <>Loading</>;
-  }
+  const { access_token, user } = useUser("/login");
 
   useEffect(() => {
     async function getData() {
@@ -29,6 +25,10 @@ const Transactions: NextPageWithLayout = () => {
 
     getData();
   }, []);
+
+  if (!access_token || !transactions) {
+    return <>Loading</>;
+  }
 
   return (
     <div className={style.container}>
