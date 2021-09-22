@@ -6,9 +6,9 @@ import { getTransactions } from "@services/Transactions/getTransactions";
 import { useUser } from "@services/User/useUser";
 
 import { NextPageWithLayout } from "@pages/utils";
-import { useState, useEffect } from "react";
 
 import type { ReactElement } from "react";
+import { useState, useEffect } from "react";
 
 import style from "./style.module.scss";
 
@@ -35,9 +35,13 @@ const Transactions: NextPageWithLayout = () => {
       <h1>Latest Zork transactions</h1>
 
       <main>
-        {transactions.map((t) => {
-          return <ZorkTransaction transaction={t} />;
-        })}
+        {!access_token ? (
+          <p>Loading, please wait!</p>
+        ) : (
+          transactions.map((t) => {
+            return <ZorkTransaction key={t.id} transaction={t} />;
+          })
+        )}
       </main>
     </div>
   );
