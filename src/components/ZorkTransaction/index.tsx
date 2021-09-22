@@ -30,7 +30,7 @@ const ZorkTransaction: React.FC<IZorkTransaction> = ({
           <b>@{from_user.first_name}</b> sent <b>{zorks}Ƶ</b> to{" "}
           <b>@{to_user.first_name}!</b>
         </header>
-        <footer>{description}</footer>
+        <footer>{description || "No description."}</footer>
       </div>
 
       <div className={style.zorkTimestamp}>
