@@ -16,23 +16,15 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useCookies } from "react-cookie";
-import { checkLogged } from "src/services/User/checkLogged";
-import { useRouter } from "next/dist/client/router";
+import { useUser } from "@services/User/useUser";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [cookie, setCookie] = useCookies(["access_token"]);
+  const [_, setCookie] = useCookies(["access_token"]);
 
-  const router = useRouter();
-
-  checkLogged({
-    accessToken: cookie.access_token,
-    logged: () => {
-      router.push("/");
-    },
-  });
+  const { user } = useUser("/", true);
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
@@ -49,6 +41,10 @@ const Login: React.FC = () => {
       });
     }
   };
+
+  if (!user) {
+    return <>Loading...</>;
+  }
 
   return (
     <>
