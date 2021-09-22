@@ -23,12 +23,12 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [cookie, setCookie] = useCookies(["user"]);
+  const [cookie, setCookie] = useCookies(["access_token"]);
 
   const router = useRouter();
 
   checkLogged({
-    accessToken: cookie.user,
+    accessToken: cookie.access_token,
     logged: () => {
       router.push("/");
     },
@@ -42,7 +42,7 @@ const Login: React.FC = () => {
     if (data.error) {
       toast.error(data.error);
     } else {
-      setCookie("user", data.access_token, {
+      setCookie("access_token", data.access_token, {
         path: "/",
         sameSite: true,
         maxAge: 86400,
