@@ -21,10 +21,6 @@ const useUser = (
   const [user, setUser] = useState(undefined as User);
 
   useEffect(() => {
-    if (!redirectTo) {
-      return;
-    }
-
     // Needed a async function to execute axios
     async function checkValidToken() {
       try {
@@ -39,9 +35,8 @@ const useUser = (
         setUser(response.data);
 
         // Check if should redirect if found User
-        if (redirectIfFound) {
+        if (redirectIfFound && redirectTo) {
           Router.push(redirectTo);
-          return;
         }
       } catch (err) {
         // Check if is a axios http error
@@ -52,12 +47,10 @@ const useUser = (
         // Check if is code 403
         if (err.response.status == 403) {
           // Check if should redirect if not found
-          if (!redirectIfFound) {
+          if (!redirectIfFound && redirectTo) {
             Router.push(redirectTo);
-            return;
           } else {
             setUser({} as User);
-            return;
           }
         } else {
           throw err;
@@ -66,7 +59,7 @@ const useUser = (
     }
 
     // check if has access_token cookie
-    if (!cookie.access_token && !redirectIfFound) {
+    if (!cookie.access_token && !redirectIfFound && redirectTo) {
       Router.push(redirectTo);
       return;
     }
