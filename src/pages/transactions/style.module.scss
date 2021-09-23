@@ -11,7 +11,16 @@
 
   > main {
     height: 100%;
+    width: 100%;
+
     overflow-y: auto;
+
+    &.loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
 
     &::-webkit-scrollbar {
       width: 14px;

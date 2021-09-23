@@ -12,6 +12,8 @@ import { useState, useEffect } from "react";
 
 import style from "./style.module.scss";
 
+import Loader from "react-loader-spinner";
+
 const Transactions: NextPageWithLayout = () => {
   const [transactions, setTransactions] = useState([]);
 
@@ -26,17 +28,13 @@ const Transactions: NextPageWithLayout = () => {
     getData();
   }, []);
 
-  if (!access_token || !transactions) {
-    return <>Loading</>;
-  }
-
   return (
     <div className={style.container}>
       <h1>Latest Zork transactions</h1>
 
-      <main>
-        {!access_token ? (
-          <p>Loading, please wait!</p>
+      <main className={!user ? style.loading : ""}>
+        {!user ? (
+          <Loader type="Puff" />
         ) : (
           transactions.map((t) => {
             return <ZorkTransaction key={t.id} transaction={t} />;
