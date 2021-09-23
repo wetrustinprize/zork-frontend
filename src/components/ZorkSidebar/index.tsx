@@ -1,4 +1,9 @@
-import { ReactElement } from "hoist-non-react-statics/node_modules/@types/react";
+import { useUser } from "@services/User/useUser";
+import {
+  HTMLAttributes,
+  ReactElement,
+} from "hoist-non-react-statics/node_modules/@types/react";
+import { useRouter } from "next/router";
 import {
   AiOutlineHome,
   AiOutlineInfoCircle,
@@ -15,14 +20,17 @@ interface IZorkSidebarButton {
   selected?: boolean;
 }
 
-const ZorkSidebarButton: React.FC<IZorkSidebarButton> = ({
+const ZorkSidebarButton: React.FC<
+  IZorkSidebarButton & HTMLAttributes<HTMLButtonElement>
+> = ({
   text,
   icon,
   selected = false,
   textBubble = "",
-}: IZorkSidebarButton) => {
+  ...props
+}: IZorkSidebarButton & HTMLAttributes<HTMLButtonElement>) => {
   return (
-    <button className={style.zorkSidebarButton}>
+    <button {...props} className={style.zorkSidebarButton}>
       <div className={selected ? style.selected : undefined} />
       {icon}
       <p>{text}</p>
@@ -41,6 +49,8 @@ const ZorkSidebarLogoutButton: React.FC<IZorkSidebarLogoutButton> = () => {
 };
 
 const ZorkSidebar: React.FC = () => {
+  const router = useRouter();
+
   return (
     <div className={style.zorkSidebar}>
       <header>
@@ -48,17 +58,35 @@ const ZorkSidebar: React.FC = () => {
       </header>
 
       <main>
-        <ZorkSidebarButton icon={<AiOutlineHome size="32px" />} text="Home" />
-        <ZorkSidebarButton icon={<AiOutlineUser size="32px" />} text="Users" />
+        <ZorkSidebarButton
+          icon={<AiOutlineHome size="32px" />}
+          text="Home"
+          onClick={() => {
+            router.push("/dashboard");
+          }}
+        />
+        <ZorkSidebarButton
+          icon={<AiOutlineUser size="32px" />}
+          text="Users"
+          onClick={() => {
+            router.push("/users");
+          }}
+        />
         <ZorkSidebarButton
           selected
           icon={<AiOutlineTransaction size="32px" />}
           text="Transactions"
+          onClick={() => {
+            router.push("/transactions");
+          }}
         />
         <ZorkSidebarButton
           icon={<AiOutlineInfoCircle size="32px" />}
           text="Requests"
           textBubble="4"
+          onClick={() => {
+            router.push("/requests");
+          }}
         />
       </main>
 
