@@ -19,7 +19,7 @@ _This project requires the Zork backend running_, check it out [here](https://gi
 
 # Credits
 
-| who                                               | what                                                                   |
-| ------------------------------------------------- | ---------------------------------------------------------------------- |
-| Peterson Adami Candido                            | Design + Coding                                                        |
-| [Gustavo Fernandes](https://github.com/nGustavin) | Design + [Next Template](https://github.com/nGustavin/nextjs-template) |
+| who                                               | what                                                                                            |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| Peterson Adami Candido                            | Design + Coding                                                                                 |
+| [Gustavo Fernandes](https://github.com/nGustavin) | Design + [Next Template](https://github.com/nGustavin/nextjs-template) + Helping _(thanks bro)_ |
