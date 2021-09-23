@@ -15,20 +15,23 @@ import style from "./style.module.scss";
 
 interface IZorkSidebarButton {
   text: string;
+  path: string;
   icon: ReactElement;
   textBubble?: string;
-  selected?: boolean;
 }
 
 const ZorkSidebarButton: React.FC<
   IZorkSidebarButton & HTMLAttributes<HTMLButtonElement>
 > = ({
   text,
+  path,
   icon,
-  selected = false,
   textBubble = "",
   ...props
 }: IZorkSidebarButton & HTMLAttributes<HTMLButtonElement>) => {
+  const router = useRouter();
+  const selected = router.pathname == path;
+
   return (
     <button {...props} className={style.zorkSidebarButton}>
       <div className={selected ? style.selected : undefined} />
@@ -49,8 +52,6 @@ const ZorkSidebarLogoutButton: React.FC<IZorkSidebarLogoutButton> = () => {
 };
 
 const ZorkSidebar: React.FC = () => {
-  const router = useRouter();
-
   return (
     <div className={style.zorkSidebar}>
       <header>
@@ -61,32 +62,23 @@ const ZorkSidebar: React.FC = () => {
         <ZorkSidebarButton
           icon={<AiOutlineHome size="32px" />}
           text="Home"
-          onClick={() => {
-            router.push("/dashboard");
-          }}
+          path="/dashboard"
         />
         <ZorkSidebarButton
           icon={<AiOutlineUser size="32px" />}
           text="Users"
-          onClick={() => {
-            router.push("/users");
-          }}
+          path="/users"
         />
         <ZorkSidebarButton
-          selected
           icon={<AiOutlineTransaction size="32px" />}
           text="Transactions"
-          onClick={() => {
-            router.push("/transactions");
-          }}
+          path="/transactions"
         />
         <ZorkSidebarButton
           icon={<AiOutlineInfoCircle size="32px" />}
           text="Requests"
+          path="/requests"
           textBubble="4"
-          onClick={() => {
-            router.push("/requests");
-          }}
         />
       </main>
 
