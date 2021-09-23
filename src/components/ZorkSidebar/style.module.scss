@@ -49,6 +49,8 @@
 
     padding: 0 16px;
     border-radius: 16px;
+
+    cursor: pointer;
   }
 
   > p {
@@ -60,8 +62,16 @@
     height: 74px;
     width: 6px;
 
+    transition: all 0.1s ease-out;
+
     &.selected {
       background-color: var(--green-500);
+    }
+  }
+
+  &:hover {
+    > div {
+      width: 12px;
     }
   }
 }
