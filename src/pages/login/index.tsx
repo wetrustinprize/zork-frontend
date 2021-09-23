@@ -8,15 +8,17 @@ import { BsLock } from "react-icons/bs";
 import ZorkTextInput from "@components/ZorkTextInput";
 import ZorkButton from "@components/ZorkButton";
 
-import { useState } from "react";
+import { loginUser } from "@services/User/loginUser";
+import { useUser } from "@services/User/useUser";
 
-import { loginUser } from "src/services/User/loginUser";
+import { useState } from "react";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { useCookies } from "react-cookie";
-import { useUser } from "@services/User/useUser";
+
+import Loader from "react-loader-spinner";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -42,10 +44,6 @@ const Login: React.FC = () => {
     }
   };
 
-  if (!user) {
-    return <>Loading...</>;
-  }
-
   return (
     <>
       <Head>
@@ -53,28 +51,32 @@ const Login: React.FC = () => {
       </Head>
 
       <main className={styles.login_screen}>
-        <form className={styles.login} onSubmit={handleLoginSubmit}>
-          <h1>Login</h1>
-          <ZorkTextInput
-            type="text"
-            placeholder="Your email"
-            icon={<AiOutlineMail size="20px" />}
-            name="email"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-          <ZorkTextInput
-            type="password"
-            placeholder="Your password"
-            icon={<BsLock size="20px" />}
-            name="password"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-          <ZorkButton text="Login" isSubmit />
-        </form>
+        {!user ? (
+          <Loader type="Puff" />
+        ) : (
+          <form className={styles.login} onSubmit={handleLoginSubmit}>
+            <h1>Login</h1>
+            <ZorkTextInput
+              type="text"
+              placeholder="Your email"
+              icon={<AiOutlineMail size="20px" />}
+              name="email"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
+            <ZorkTextInput
+              type="password"
+              placeholder="Your password"
+              icon={<BsLock size="20px" />}
+              name="password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+            <ZorkButton text="Login" isSubmit />
+          </form>
+        )}
       </main>
 
       <ToastContainer position="top-center" />
