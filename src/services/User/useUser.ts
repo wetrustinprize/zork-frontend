@@ -8,7 +8,7 @@ import { api } from "src/utils/api";
 import type { User } from "./utils";
 
 /**
- *
+ * React hook that give information about the authenticated user. Also returns the access token to make other requests.
  * @param redirectTo The url to redirect if use is not authenticated, if set to undefined, it doesn't redirect to any page. Default: undefined.
  * @param redirectIfFound Should redirect if found user instead of if not found? Default: false.
  * @returns The access token and the User object
