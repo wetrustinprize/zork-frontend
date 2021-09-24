@@ -13,4 +13,4 @@ const ZorkContainer: React.FC<HTMLAttributes<HTMLDivElement>> = ({
   );
 };
 
-export { ZorkContainer };
+export default ZorkContainer;
