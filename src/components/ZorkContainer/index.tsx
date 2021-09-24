@@ -1,13 +1,16 @@
-import { ReactElement } from "react";
+import { HTMLAttributes } from "react";
 
 import style from "./style.module.scss";
 
-interface IZorkContainer {
-  children: ReactElement;
-}
-
-const ZorkContainer: React.FC = ({ children }: IZorkContainer) => {
-  return <div className={style.container}>{children}</div>;
+const ZorkContainer: React.FC<HTMLAttributes<HTMLDivElement>> = ({
+  children,
+  ...props
+}: HTMLAttributes<HTMLDivElement>) => {
+  return (
+    <div {...props}>
+      <main className={style.container}>{children}</main>
+    </div>
+  );
 };
 
 export { ZorkContainer };
