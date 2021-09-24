@@ -29,7 +29,7 @@ const Transactions: NextPageWithLayout = () => {
   }, []);
 
   return (
-    <ZorkContainer>
+    <ZorkContainer className={style.container}>
       <h1>Latest Zork transactions</h1>
 
       <main className={!user ? style.loading : style.transactions}>
