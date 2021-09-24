@@ -33,7 +33,13 @@ const ZorkSidebarButton: React.FC<
   const selected = router.pathname == path;
 
   return (
-    <button {...props} className={style.zorkSidebarButton}>
+    <button
+      {...props}
+      className={style.zorkSidebarButton}
+      onClick={() => {
+        router.push(path);
+      }}
+    >
       <div className={selected ? style.selected : undefined} />
       {icon}
       <p>{text}</p>
