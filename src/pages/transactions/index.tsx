@@ -1,6 +1,7 @@
 import ZorkLayout from "@components/ZorkLayout";
 import ZorkSidebar from "@components/ZorkSidebar";
 import ZorkTransaction from "@components/ZorkTransaction";
+import ZorkContainer from "@components/ZorkContainer";
 
 import { getTransactions } from "@services/Transactions/getTransactions";
 import { useUser } from "@services/User/useUser";
@@ -12,7 +13,6 @@ import { useState, useEffect } from "react";
 import style from "./style.module.scss";
 
 import Loader from "react-loader-spinner";
-import { ZorkContainer } from "@components/ZorkContainer";
 
 const Transactions: NextPageWithLayout = () => {
   const [transactions, setTransactions] = useState([]);
