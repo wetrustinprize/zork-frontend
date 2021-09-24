@@ -7,12 +7,12 @@ import { useUser } from "@services/User/useUser";
 
 import { NextPageWithLayout } from "@pages/utils";
 
-import type { ReactElement } from "react";
 import { useState, useEffect } from "react";
 
 import style from "./style.module.scss";
 
 import Loader from "react-loader-spinner";
+import { ZorkContainer } from "@components/ZorkContainer";
 
 const Transactions: NextPageWithLayout = () => {
   const [transactions, setTransactions] = useState([]);
@@ -29,10 +29,10 @@ const Transactions: NextPageWithLayout = () => {
   }, []);
 
   return (
-    <div className={style.container}>
+    <ZorkContainer>
       <h1>Latest Zork transactions</h1>
 
-      <main className={!user ? style.loading : ""}>
+      <main className={!user ? style.loading : style.transactions}>
         {!user ? (
           <Loader type="Puff" />
         ) : (
@@ -41,11 +41,11 @@ const Transactions: NextPageWithLayout = () => {
           })
         )}
       </main>
-    </div>
+    </ZorkContainer>
   );
 };
 
-Transactions.getLayout = (page: ReactElement) => {
+Transactions.getLayout = (page) => {
   return (
     <ZorkLayout>
       <ZorkSidebar />
