@@ -5,7 +5,7 @@ import Head from "next/head";
 import { AiOutlineMail } from "react-icons/ai";
 import { BsLock } from "react-icons/bs";
 
-import ZorkTextInput from "@components/ZorkTextInput";
+import ZorkInput from "@components/ZorkInput";
 import ZorkButton from "@components/ZorkButton";
 
 import { loginUser } from "@services/User/loginUser";
@@ -56,7 +56,7 @@ const Login: React.FC = () => {
         ) : (
           <form className={styles.login} onSubmit={handleLoginSubmit}>
             <h1>Login</h1>
-            <ZorkTextInput
+            <ZorkInput
               type="text"
               placeholder="Your email"
               icon={<AiOutlineMail size="20px" />}
@@ -65,7 +65,7 @@ const Login: React.FC = () => {
                 setEmail(e.target.value);
               }}
             />
-            <ZorkTextInput
+            <ZorkInput
               type="password"
               placeholder="Your password"
               icon={<BsLock size="20px" />}

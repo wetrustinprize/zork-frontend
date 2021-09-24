@@ -1,7 +1,7 @@
 import Head from "next/head";
 
 import ZorkButton from "@components/ZorkButton";
-import ZorkTextInput from "@components/ZorkTextInput";
+import ZorkInput from "@components/ZorkInput";
 
 import { AiOutlineMail } from "react-icons/ai";
 import { BsLock, BsPerson } from "react-icons/bs";
@@ -14,6 +14,7 @@ import { registerUser } from "src/services/User/registerUser";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+//TODO: Register AND login the user, there's no logic in just registering and not logging the user in
 const Signup: React.FC = () => {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
@@ -40,7 +41,7 @@ const Signup: React.FC = () => {
       <main className={styles.signup_screen}>
         <form className={styles.signup} onSubmit={handleSingupSubmit}>
           <h1>Sign Up</h1>
-          <ZorkTextInput
+          <ZorkInput
             type="text"
             placeholder="Your full name"
             icon={<BsPerson size="20px" />}
@@ -49,7 +50,7 @@ const Signup: React.FC = () => {
               setFullname(e.target.value);
             }}
           />
-          <ZorkTextInput
+          <ZorkInput
             type="text"
             placeholder="Your email"
             icon={<AiOutlineMail size="20px" />}
@@ -58,7 +59,7 @@ const Signup: React.FC = () => {
               setEmail(e.target.value);
             }}
           />
-          <ZorkTextInput
+          <ZorkInput
             type="password"
             placeholder="Your password"
             icon={<BsLock size="20px" />}
