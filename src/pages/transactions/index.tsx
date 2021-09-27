@@ -36,7 +36,9 @@ const Transactions: NextPageWithLayout = () => {
           <Loader type="Puff" />
         ) : (
           transactions.map((t) => {
-            return <ZorkTransaction key={t.id} transaction={t} />;
+            return (
+              <ZorkTransaction key={t.id} transaction={t} viewUser={user} />
+            );
           })
         )}
       </main>
