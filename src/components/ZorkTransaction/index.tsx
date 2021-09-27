@@ -3,12 +3,18 @@ import style from "./style.module.scss";
 import { FaExchangeAlt } from "react-icons/fa";
 import { format } from "date-fns";
 
+import { User } from "@services/User/utils";
+import { Transaction } from "@services/Transactions/utils";
+
+import Link from "next/link";
 interface IZorkTransaction {
-  transaction: any;
+  transaction: Transaction;
+  viewUser?: User;
 }
 
 const ZorkTransaction: React.FC<IZorkTransaction> = ({
   transaction,
+  viewUser = undefined,
 }: IZorkTransaction) => {
   const { from_user, to_user, description, zorks, created_at } = transaction;
   const date = new Date(created_at);
@@ -27,8 +33,37 @@ const ZorkTransaction: React.FC<IZorkTransaction> = ({
 
       <div className={style.zorkInfo}>
         <header>
-          <b>@{from_user.first_name}</b> sent <b>{zorks}Ƶ</b> to{" "}
-          <b>@{to_user.first_name}!</b>
+          <p>
+            {viewUser?.id == from_user.id ? (
+              <b>You</b>
+            ) : (
+              <Link
+                href={{
+                  pathname: "/users",
+                  query: { id: from_user.id },
+                }}
+              >
+                <a>
+                  <b>@{from_user.first_name}</b>
+                </a>
+              </Link>
+            )}{" "}
+            sent <b>{zorks}Ƶ</b> to{" "}
+            {viewUser?.id == to_user.id ? (
+              <b>You</b>
+            ) : (
+              <Link
+                href={{
+                  pathname: "/users",
+                  query: { id: to_user.id },
+                }}
+              >
+                <a>
+                  <b>@{to_user.first_name}</b>
+                </a>
+              </Link>
+            )}
+          </p>
         </header>
         <footer>{description || "No description."}</footer>
       </div>
