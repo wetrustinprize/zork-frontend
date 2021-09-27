@@ -1,15 +1,23 @@
 import { api } from "src/utils/api";
 import { User } from "./utils";
 
-interface IGetUserInfo {
+interface IGetUserConf {
   email?: string;
   id?: string;
 }
 
+/**
+ *
+ * @param access_token Access token for communicating with the server.
+ * @param conf Information on how to get the user data
+ * @returns
+ */
 const getUserInfo = async (
   access_token: string,
-  { email, id }: IGetUserInfo
+  conf: IGetUserConf
 ): Promise<any> => {
+  const { email, id } = conf;
+
   try {
     let response = undefined;
 
