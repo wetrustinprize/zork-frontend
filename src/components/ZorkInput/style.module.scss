@@ -16,13 +16,13 @@
     border: 0;
   }
 
-  > svg {
-    flex: 0 0 auto;
+  > .icon {
+    flex: 0 0 16px;
 
     margin: 0 12px;
   }
 
-  > div {
+  > .divider {
     flex: 0 0 auto;
 
     background-color: var(--black);
