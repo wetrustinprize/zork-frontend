@@ -1,7 +1,6 @@
 import ZorkLayout from "@components/ZorkLayout";
 import ZorkSidebar from "@components/ZorkSidebar";
 import ZorkTransaction from "@components/ZorkTransaction";
-import ZorkContainer from "@components/ZorkContainer";
 
 import { getTransactions } from "@services/Transactions/getTransactions";
 import { useUser } from "@services/User/useUser";
@@ -29,7 +28,7 @@ const Transactions: NextPageWithLayout = () => {
   }, []);
 
   return (
-    <ZorkContainer className={style.container}>
+    <div className={style.container}>
       <h1>Latest Zork transactions</h1>
 
       <main className={!user ? style.loading : style.transactions}>
@@ -41,7 +40,7 @@ const Transactions: NextPageWithLayout = () => {
           })
         )}
       </main>
-    </ZorkContainer>
+    </div>
   );
 };
 
