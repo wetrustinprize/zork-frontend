@@ -1,7 +1,7 @@
 import { InputHTMLAttributes } from "hoist-non-react-statics/node_modules/@types/react";
-import { HTMLAttributes, ReactElement } from "react";
+import { ReactElement } from "react";
 
-import styles from "./style.module.scss";
+import style from "./style.module.scss";
 
 interface IZorkInput {
   icon: ReactElement;
@@ -10,9 +10,9 @@ interface IZorkInput {
 const ZorkInput: React.FC<IZorkInput & InputHTMLAttributes<HTMLInputElement>> =
   ({ icon, ...props }: IZorkInput & InputHTMLAttributes<HTMLInputElement>) => {
     return (
-      <div className={styles.zInputText}>
-        {icon}
-        <div />
+      <div className={style.zInputText}>
+        <div className={style.icon}>{icon}</div>
+        <div className={style.divider} />
         <input {...props} />
       </div>
     );
