@@ -1,0 +1,45 @@
+.zorkUserCard {
+  padding: 32px;
+  background-color: var(--white-500);
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  > div {
+    margin-bottom: 4px;
+  }
+
+  > .userActions {
+    > * {
+      margin: 8px 0;
+    }
+
+    > button {
+      margin-right: 8px;
+    }
+  }
+
+  > .userInfo {
+    > h1 {
+      font-size: 36px;
+      margin: 32px 0 64px 0;
+    }
+  }
+
+  > .divider {
+    height: 3px;
+    width: 100%;
+    color: var(--gray-200);
+  }
+
+  > .transactionHeader {
+    font-size: 36px;
+    font-weight: normal;
+  }
+
+  > .transactions {
+    overflow-y: auto;
+  }
+}
