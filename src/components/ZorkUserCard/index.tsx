@@ -2,13 +2,19 @@ import ZorkButton from "@components/ZorkButton";
 import ZorkInput from "@components/ZorkInput";
 import ZorkTransaction from "@components/ZorkTransaction";
 
+import { User } from "@services/User/utils";
+
 import style from "./style.module.scss";
 
-const ZorkUserCard: React.FC = () => {
+interface IZorkUserCard {
+  viewUser: User;
+}
+
+const ZorkUserCard: React.FC<IZorkUserCard> = ({ viewUser }: IZorkUserCard) => {
   return (
     <div className={style.zorkUserCard}>
       <div className={style.userInfo}>
-        <h1>Peterson Adami Candido</h1>
+        <h1>{viewUser.fullname}</h1>
       </div>
 
       <div className={style.userActions}>
@@ -27,7 +33,7 @@ const ZorkUserCard: React.FC = () => {
       <div className={style.divider} />
 
       <h1 className={style.transactionHeader}>
-        Your transactions with <strong>Peterson</strong>
+        Your transactions with <strong>{viewUser.first_name}</strong>
       </h1>
 
       <div className={style.transactions}>
