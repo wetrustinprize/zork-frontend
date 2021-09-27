@@ -34,7 +34,12 @@
   > .zorkInfo {
     flex: 1 0 auto;
 
+    > header {
+      font-size: 24px;
+    }
+
     > footer {
+      font-size: 18px;
       color: var(--gray-200);
     }
   }
