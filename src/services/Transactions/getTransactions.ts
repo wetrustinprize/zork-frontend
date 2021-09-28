@@ -1,16 +1,30 @@
 import { api } from "src/utils/api";
+import { Transaction } from "./utils";
 
-interface IGetTransactions {
-  access_token: string;
+interface IGetTransactionsConf {
+  withID?: string;
 }
 
-const getTransactions = async ({ access_token }: IGetTransactions) => {
-  try {
-    const response = await api.get("/transaction", {
-      headers: { Authorization: "Bearer " + access_token },
-    });
+const getTransactions = async (
+  access_token: string,
+  conf: IGetTransactionsConf = {}
+): Promise<any> => {
+  const { withID } = conf;
 
-    return response.data;
+  try {
+    let response = undefined;
+
+    if (withID) {
+      response = await api.get("/transaction/with/" + withID, {
+        headers: { Authorization: "Bearer " + access_token },
+      });
+    } else {
+      response = await api.get("/transaction", {
+        headers: { Authorization: "Bearer " + access_token },
+      });
+    }
+
+    return response.data as Transaction[];
   } catch (err) {
     if (!err.response) {
       throw err;
