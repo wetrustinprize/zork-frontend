@@ -1,0 +1,44 @@
+%base {
+  border: solid var(--green-500);
+  border-radius: 36px;
+  min-width: 5rem;
+
+  padding: 0px 16px;
+
+  font-size: 22px;
+  font-weight: bold;
+
+  transition: background-color 0.2s;
+}
+
+.toggleTrue {
+  @extend %base;
+
+  background-color: var(--green-500);
+
+  color: var(--white-900);
+
+  &:hover {
+    background-color: var(--green-400);
+  }
+
+  &:active {
+    background-color: var(--green-300);
+  }
+}
+
+.toggleFalse {
+  @extend %base;
+
+  background-color: var(--white-900);
+
+  color: var(--green-500);
+
+  &:hover {
+    background-color: var(--white-500);
+  }
+
+  &:active {
+    background-color: var(--gray-600);
+  }
+}
