@@ -12,7 +12,6 @@ import getUserInfo from "@services/User/getUserInfo";
 import { IoMdSearch } from "react-icons/io";
 
 import style from "./style.module.scss";
-import "react-toastify/dist/ReactToastify.css";
 
 import Loader from "react-loader-spinner";
 
@@ -20,11 +19,12 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Users: NextPageWithLayout = () => {
   const router = useRouter();
 
-  const { user, access_token } = useUser();
+  const { user, access_token } = useUser("/login");
   const [viewUser, setViewUser] = useState({} as User);
   const [viewEmail, setViewEmail] = useState("");
 
