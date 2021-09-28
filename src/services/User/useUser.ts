@@ -14,7 +14,7 @@ import type { User } from "./utils";
  * @returns The access token and the User object
  */
 const useUser = (
-  redirectTo: string = undefined,
+  redirectTo: string = "/login",
   redirectIfFound: boolean = false
 ): { access_token: string; user: User } => {
   const [cookie] = useCookies(["access_token"]);
