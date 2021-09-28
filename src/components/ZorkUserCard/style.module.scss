@@ -43,8 +43,22 @@
   }
 
   > .transactionHeader {
-    font-size: 36px;
-    font-weight: normal;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    > h1 {
+      font-size: 36px;
+      font-weight: normal;
+    }
+
+    > .transactionFilter {
+      margin: 0 16px;
+
+      > * {
+        margin: 0 4px;
+      }
+    }
   }
 
   > .transactions {

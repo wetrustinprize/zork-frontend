@@ -1,5 +1,6 @@
 import ZorkButton from "@components/ZorkButton";
 import ZorkInput from "@components/ZorkInput";
+import { ZorkToggle } from "@components/ZorkToggle";
 import ZorkTransaction from "@components/ZorkTransaction";
 
 import { getTransactions } from "@services/Transactions/getTransactions";
@@ -60,15 +61,22 @@ const ZorkUserCard: React.FC<IZorkUserCard> = ({ viewUser }: IZorkUserCard) => {
 
           <div className={style.divider} />
 
-          <h1 className={style.transactionHeader}>
-            {user.id == viewUser.id ? (
-              <>Your transactions</>
-            ) : (
-              <>
-                Your transactions with <strong>{viewUser.first_name}</strong>
-              </>
-            )}
-          </h1>
+          <div className={style.transactionHeader}>
+            <h1>
+              {user.id == viewUser.id ? (
+                <>Your transactions</>
+              ) : (
+                <>
+                  Your transactions with <strong>{viewUser.first_name}</strong>
+                </>
+              )}
+            </h1>
+
+            <div className={style.transactionFilter}>
+              <ZorkToggle text="Sent" />
+              <ZorkToggle text="Received" />
+            </div>
+          </div>
 
           <div className={style.transactions}>
             {transactions.length > 0 ? (
