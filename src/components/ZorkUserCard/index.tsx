@@ -71,13 +71,13 @@ const ZorkUserCard: React.FC<IZorkUserCard> = ({ viewUser }: IZorkUserCard) => {
               <ZorkInput
                 type="number"
                 min={1}
-                icon={<>Z</>}
+                icon={<p style={{ fontSize: "24px", fontWeight: "bold" }}>Ƶ</p>}
                 placeholder="Total Zorks"
                 width="209px"
               />
               <ZorkInput
                 type="text"
-                icon={<BiMessageDetail size={"32px"} />}
+                icon={<BiMessageDetail size={"24px"} />}
                 placeholder="Message"
               />
             </div>
