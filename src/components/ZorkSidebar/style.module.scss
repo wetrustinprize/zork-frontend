@@ -77,6 +77,10 @@
 }
 
 .zorkSidebarLogoutButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   > svg {
     margin: auto;
 
@@ -86,5 +90,15 @@
   height: 54px;
   width: 54px;
 
+  transition: background-color 0.2s;
+
   background-color: var(--green-500);
+
+  &:hover {
+    background-color: var(--green-400);
+  }
+
+  &:active {
+    background-color: var(--green-300);
+  }
 }
