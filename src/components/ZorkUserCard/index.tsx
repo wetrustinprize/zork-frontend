@@ -9,6 +9,8 @@ import { Transaction } from "@services/Transactions/utils";
 import { useUser } from "@services/User/useUser";
 import { User } from "@services/User/utils";
 
+import { BiMessageDetail } from "react-icons/bi";
+
 import { useEffect, useState } from "react";
 import Loader from "react-loader-spinner";
 
@@ -26,14 +28,14 @@ const ZorkUserCard: React.FC<IZorkUserCard> = ({ viewUser }: IZorkUserCard) => {
     [] as Transaction[]
   );
 
-  const [sentFilter, setSentFilter] = useState(false);
-  const [receivedFilter, setReceivedFilter] = useState(false);
+  const [sentFilter, setSentFilter] = useState(true);
+  const [receivedFilter, setReceivedFilter] = useState(true);
 
   useEffect(() => {
     const filtered = transactions.filter(
       (transaction) =>
-        (transaction.from_id == user.id && !sentFilter) ||
-        (transaction.to_id == user.id && !receivedFilter)
+        (transaction.from_id == user.id && sentFilter) ||
+        (transaction.to_id == user.id && receivedFilter)
     );
 
     setFilteredTransactions(filtered);
@@ -61,19 +63,29 @@ const ZorkUserCard: React.FC<IZorkUserCard> = ({ viewUser }: IZorkUserCard) => {
         <>
           <div className={style.userInfo}>
             <h1>{viewUser.fullname}</h1>
+            <h2>{viewUser.email}</h2>
           </div>
 
           <div className={style.userActions}>
-            <ZorkInput
-              type="number"
-              min={1}
-              icon={<>Z</>}
-              placeholder="Total Zorks"
-            />
-            <ZorkInput type="text" icon={<>M</>} placeholder="Message" />
+            <div className={style.actionsInputs}>
+              <ZorkInput
+                type="number"
+                min={1}
+                icon={<>Z</>}
+                placeholder="Total Zorks"
+                width="209px"
+              />
+              <ZorkInput
+                type="text"
+                icon={<BiMessageDetail size={"32px"} />}
+                placeholder="Message"
+              />
+            </div>
 
-            <ZorkButton text="Send" />
-            <ZorkButton text="Request" />
+            <div className={style.actionsButtons}>
+              <ZorkButton text="Send" />
+              <ZorkButton text="Request" />
+            </div>
           </div>
 
           <div className={style.divider} />
@@ -92,12 +104,14 @@ const ZorkUserCard: React.FC<IZorkUserCard> = ({ viewUser }: IZorkUserCard) => {
             <div className={style.transactionFilter}>
               <ZorkToggle
                 text="Sent"
+                unchecked={!sentFilter}
                 onToggle={(v) => {
                   setSentFilter(v);
                 }}
               />
               <ZorkToggle
                 text="Received"
+                unchecked={!sentFilter}
                 onToggle={(v) => {
                   setReceivedFilter(v);
                 }}
@@ -108,7 +122,9 @@ const ZorkUserCard: React.FC<IZorkUserCard> = ({ viewUser }: IZorkUserCard) => {
           <div className={style.transactions}>
             {filteredTransactions.length > 0 ? (
               filteredTransactions.map((t) => {
-                return <ZorkTransaction key={t.id} transaction={t} />;
+                return (
+                  <ZorkTransaction key={t.id} transaction={t} viewUser={user} />
+                );
               })
             ) : (
               <div className={style.empty}>Nothing here :(</div>
