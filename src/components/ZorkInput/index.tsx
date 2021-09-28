@@ -5,12 +5,22 @@ import style from "./style.module.scss";
 
 interface IZorkInput {
   icon: ReactElement;
+  width?: string;
 }
 
 const ZorkInput: React.FC<IZorkInput & InputHTMLAttributes<HTMLInputElement>> =
-  ({ icon, ...props }: IZorkInput & InputHTMLAttributes<HTMLInputElement>) => {
+  ({
+    icon,
+    width = "418px",
+    ...props
+  }: IZorkInput & InputHTMLAttributes<HTMLInputElement>) => {
     return (
-      <div className={style.zInputText}>
+      <div
+        style={{
+          width,
+        }}
+        className={style.zInputText}
+      >
         <div className={style.icon}>{icon}</div>
         <div className={style.divider} />
         <input {...props} />
