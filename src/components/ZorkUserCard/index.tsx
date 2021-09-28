@@ -20,7 +20,24 @@ interface IZorkUserCard {
 
 const ZorkUserCard: React.FC<IZorkUserCard> = ({ viewUser }: IZorkUserCard) => {
   const { access_token, user } = useUser();
+
   const [transactions, setTransactions] = useState([] as Transaction[]);
+  const [filteredTransactions, setFilteredTransactions] = useState(
+    [] as Transaction[]
+  );
+
+  const [sentFilter, setSentFilter] = useState(false);
+  const [receivedFilter, setReceivedFilter] = useState(false);
+
+  useEffect(() => {
+    const filtered = transactions.filter(
+      (transaction) =>
+        (transaction.from_id == user.id && !sentFilter) ||
+        (transaction.to_id == user.id && !receivedFilter)
+    );
+
+    setFilteredTransactions(filtered);
+  }, [sentFilter, receivedFilter, transactions]);
 
   useEffect(() => {
     async function getData() {
@@ -73,14 +90,24 @@ const ZorkUserCard: React.FC<IZorkUserCard> = ({ viewUser }: IZorkUserCard) => {
             </h1>
 
             <div className={style.transactionFilter}>
-              <ZorkToggle text="Sent" />
-              <ZorkToggle text="Received" />
+              <ZorkToggle
+                text="Sent"
+                onToggle={(v) => {
+                  setSentFilter(v);
+                }}
+              />
+              <ZorkToggle
+                text="Received"
+                onToggle={(v) => {
+                  setReceivedFilter(v);
+                }}
+              />
             </div>
           </div>
 
           <div className={style.transactions}>
-            {transactions.length > 0 ? (
-              transactions.map((t) => {
+            {filteredTransactions.length > 0 ? (
+              filteredTransactions.map((t) => {
                 return <ZorkTransaction key={t.id} transaction={t} />;
               })
             ) : (
