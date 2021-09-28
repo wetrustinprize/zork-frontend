@@ -20,7 +20,7 @@ const ZorkToggle: React.FC<IZorkToggle> = ({
       className={marked ? style.toggleTrue : style.toggleFalse}
       onClick={() => {
         setMarked(!marked);
-        onToggle(marked);
+        onToggle(!marked);
       }}
     >
       {text}
