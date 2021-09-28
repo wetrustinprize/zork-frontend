@@ -20,8 +20,8 @@ const Transactions: NextPageWithLayout = () => {
 
   useEffect(() => {
     async function getData() {
-      const transactions = await getTransactions({ access_token });
-      setTransactions(transactions);
+      const t = await getTransactions(access_token, { withID: "self" });
+      setTransactions(t);
     }
 
     getData();
@@ -29,7 +29,7 @@ const Transactions: NextPageWithLayout = () => {
 
   return (
     <div className={style.container}>
-      <h1>Latest Zork transactions</h1>
+      <h1>Your latest Zork transactions</h1>
 
       <main className={!user ? style.loading : style.transactions}>
         {!user ? (
