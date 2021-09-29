@@ -48,6 +48,7 @@ const ZorkSidebarButton: React.FC<
   );
 };
 
+// TODO: Make the user logout
 interface IZorkSidebarLogoutButton {}
 const ZorkSidebarLogoutButton: React.FC<IZorkSidebarLogoutButton> = () => {
   return (
@@ -58,10 +59,17 @@ const ZorkSidebarLogoutButton: React.FC<IZorkSidebarLogoutButton> = () => {
 };
 
 const ZorkSidebar: React.FC = () => {
+  const { user } = useUser();
+
   return (
     <div className={style.zorkSidebar}>
       <header>
         <h1>Zork</h1>
+        <h2>
+          <b>{user?.first_name}</b>
+        </h2>
+        <h2>{user?.email}</h2>
+        <h2>Ƶ {user?.zorks.toLocaleString("pt-br")}</h2>
       </header>
 
       <main>

@@ -10,7 +10,12 @@
   flex-direction: column;
 
   > main {
-    margin: auto 0;
+    flex: 1 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   > footer,
@@ -18,11 +23,19 @@
     margin: 18px;
   }
 
-  header > h1 {
-    margin-top: 16px;
+  header {
+    > h2 {
+      font-weight: normal;
+      font-size: 18px;
 
-    font-weight: normal;
-    font-size: 43px;
+      color: var(--gray-200);
+    }
+    > h1 {
+      margin-top: 16px;
+
+      font-weight: normal;
+      font-size: 43px;
+    }
   }
 }
 
@@ -33,7 +46,7 @@
   align-items: center;
   width: 100%;
 
-  margin: 32px 0;
+  margin: 16px 0;
 
   background-color: rgba(0, 0, 0, 0);
 
@@ -82,8 +95,7 @@
   justify-content: center;
 
   > svg {
-    margin: auto;
-
+    transform: rotate(180deg);
     color: white;
   }
 
