@@ -1,5 +1,4 @@
-import { InputHTMLAttributes } from "hoist-non-react-statics/node_modules/@types/react";
-import { ReactElement } from "react";
+import { InputHTMLAttributes, ReactElement } from "react";
 
 import style from "./style.module.scss";
 
