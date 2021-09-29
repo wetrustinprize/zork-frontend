@@ -33,9 +33,13 @@ const Transactions: NextPageWithLayout = () => {
     }
 
     getData();
-  }, [access_token]);
+  }, [access_token, user]);
 
   useEffect(() => {
+    if (!user) {
+      return;
+    }
+
     const filtered = transactions.filter(
       (transaction) =>
         (transaction.from_id == user.id && sentFilter) ||
