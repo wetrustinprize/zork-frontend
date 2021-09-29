@@ -32,6 +32,11 @@ const ZorkUserCard: React.FC<IZorkUserCard> = ({ viewUser }: IZorkUserCard) => {
   const [receivedFilter, setReceivedFilter] = useState(true);
 
   useEffect(() => {
+    if (!user) {
+      setFilteredTransactions(transactions);
+      return;
+    }
+
     const filtered = transactions.filter(
       (transaction) =>
         (transaction.from_id == user.id && sentFilter) ||
