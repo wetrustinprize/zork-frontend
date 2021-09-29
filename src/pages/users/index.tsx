@@ -87,7 +87,7 @@ const Users: NextPageWithLayout = () => {
               </div>
             </header>
 
-            {viewUser ? <ZorkUserCard viewUser={viewUser} /> : <></>}
+            <ZorkUserCard viewUser={viewUser ? viewUser : user} />
           </>
         )}
       </main>
