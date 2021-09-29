@@ -66,7 +66,10 @@ const ZorkTransaction: React.FC<IZorkTransaction> = ({
             )}{" "}
           </p>
           {!transaction.public ? (
-            <AiFillEyeInvisible className={style.privateIcon} size={"24px"} />
+            <div className={style.privateIcon}>
+              <AiFillEyeInvisible size={"24px"} />
+              <label>Private</label>
+            </div>
           ) : (
             <></>
           )}

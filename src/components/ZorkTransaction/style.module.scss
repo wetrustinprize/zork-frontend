@@ -41,7 +41,29 @@
       font-size: 24px;
 
       > .privateIcon {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
         margin-left: 8px;
+
+        color: var(--gray-500);
+
+        &:hover > label {
+          opacity: 1;
+        }
+
+        > svg {
+          flex: 0 0 auto;
+        }
+
+        > label {
+          font-size: 20px;
+          overflow: hidden;
+          opacity: 0;
+
+          transition: opacity 0.1s;
+        }
       }
     }
 
