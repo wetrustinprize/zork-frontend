@@ -13,7 +13,7 @@
     display: flex;
     align-items: center;
 
-    > svg {
+    > .tradeIcon {
       margin: 0 -10px;
       z-index: 1;
     }
@@ -35,7 +35,14 @@
     flex: 1 0 auto;
 
     > header {
+      display: flex;
+      align-items: center;
+
       font-size: 24px;
+
+      > .privateIcon {
+        margin-left: 8px;
+      }
     }
 
     > footer {

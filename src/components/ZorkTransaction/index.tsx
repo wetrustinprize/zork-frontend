@@ -1,6 +1,7 @@
 import style from "./style.module.scss";
 
 import { FaExchangeAlt } from "react-icons/fa";
+import { AiFillEyeInvisible } from "react-icons/ai";
 import { format } from "date-fns";
 
 import { User } from "@services/User/utils";
@@ -25,7 +26,7 @@ const ZorkTransaction: React.FC<IZorkTransaction> = ({
         <div className={style.zorkIcon}>
           <p>{from_user.first_name[0]}</p>
         </div>
-        <FaExchangeAlt size="28px" />
+        <FaExchangeAlt className={style.tradeIcon} size="28px" />
         <div className={style.zorkIcon}>
           <p>{to_user.first_name[0]}</p>
         </div>
@@ -62,8 +63,13 @@ const ZorkTransaction: React.FC<IZorkTransaction> = ({
                   <b>@{to_user.first_name}</b>
                 </a>
               </Link>
-            )}
+            )}{" "}
           </p>
+          {!transaction.public ? (
+            <AiFillEyeInvisible className={style.privateIcon} size={"24px"} />
+          ) : (
+            <></>
+          )}
         </header>
         <footer>{description || "No description."}</footer>
       </div>
