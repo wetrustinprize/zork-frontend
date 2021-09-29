@@ -49,8 +49,15 @@
 
         color: var(--gray-500);
 
-        &:hover > label {
-          opacity: 1;
+        * {
+          transition: all 0.1s;
+        }
+
+        &:hover {
+          color: var(--gray-200);
+          > label {
+            opacity: 1;
+          }
         }
 
         > svg {
@@ -61,8 +68,6 @@
           font-size: 20px;
           overflow: hidden;
           opacity: 0;
-
-          transition: opacity 0.1s;
         }
       }
     }
