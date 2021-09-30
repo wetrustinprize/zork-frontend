@@ -76,7 +76,7 @@ const ZorkSidebar: React.FC = () => {
         <ZorkSidebarButton
           icon={<AiOutlineHome size="32px" />}
           text="Home"
-          path="/dashboard"
+          path="/global"
         />
         <ZorkSidebarButton
           icon={<AiOutlineUser size="32px" />}
