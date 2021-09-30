@@ -28,7 +28,9 @@ const Users: NextPageWithLayout = () => {
   const [viewUser, setViewUser] = useState({} as User);
   const [viewEmail, setViewEmail] = useState("");
 
-  async function findUserEmail() {
+  const handleFind = async (e) => {
+    e.preventDefault();
+
     if (!viewEmail) {
       toast.error("Please enter a email");
       return;
@@ -41,7 +43,7 @@ const Users: NextPageWithLayout = () => {
     } else {
       toast.error(response.error);
     }
-  }
+  };
 
   useEffect(() => {
     async function getData() {
@@ -74,7 +76,7 @@ const Users: NextPageWithLayout = () => {
             <header>
               <h1>Users</h1>
 
-              <div className={style.searchBar}>
+              <form className={style.searchBar} onSubmit={handleFind}>
                 <IoMdSearch size={"40px"} />
                 <input
                   type="text"
@@ -83,8 +85,8 @@ const Users: NextPageWithLayout = () => {
                     setViewEmail(e.target.value);
                   }}
                 />
-                <ZorkButton text="Search" onClick={findUserEmail} />
-              </div>
+                <ZorkButton text="Search" isSubmit />
+              </form>
             </header>
 
             <ZorkUserCard viewUser={viewUser ? viewUser : user} />
