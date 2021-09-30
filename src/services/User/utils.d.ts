@@ -6,4 +6,5 @@ export type User = Entity & {
   first_name: string;
   last_name: string;
   zorks: number;
+  total_requests?: number;
 };
