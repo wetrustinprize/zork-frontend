@@ -1,13 +1,14 @@
 .landingContainer{
     width: 100vw;
-    height: 100vh;
+    height: calc(100vh - 7.4rem);
     background: #F6F6F6;
     padding: 0 2.8rem;
+    
 
     >section{
-        padding: 4rem 0 0 0;
         display: flex;
         width: 100%;
+
         align-items: center;
         justify-content: space-between;
 
@@ -30,6 +31,34 @@
                     font-weight: 600;
                     margin-left: -1rem;
                 }
+            }
+        }
+    }
+
+    >div{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 3rem;
+
+        >div:nth-child(1){
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        >div:nth-child(2){
+            display: inline-flex;
+            justify-content: center;
+            width: 50%;
+
+
+            >button{
+                align-self: center;
+                width: 10rem;
+                height: 4rem;
+                background: var(--green-500);
             }
         }
     }

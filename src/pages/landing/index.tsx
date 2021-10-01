@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { LandingHeader } from "@components/ZorkLandingHeader"
 import Head from "next/head"
+import { BiLeftArrow, BiRightArrow } from "react-icons/bi"
 import styles from './styles.module.scss'
 
 const Landing: React.FC = () => {
@@ -24,7 +25,19 @@ const Landing: React.FC = () => {
                         <img src="/images/illustration.svg" alt="Illustration" />
                      </section>
                      <div>
-
+                        <div>
+                            <img src="/images/shield.svg" alt="Shield"/>
+                            <p>
+                                A new way to make the transactions and <br />
+                                payments easy, reliable and secure. 
+                            </p>
+                        </div>
+                        <div>
+                            <button>
+                                Get started
+                                <BiRightArrow size={24} color="#FFF"/>
+                            </button>
+                        </div>
                      </div>
                 </main>
         </>
