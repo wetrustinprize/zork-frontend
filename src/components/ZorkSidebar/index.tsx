@@ -65,11 +65,17 @@ const ZorkSidebar: React.FC = () => {
     <div className={style.zorkSidebar}>
       <header>
         <h1>Zork</h1>
-        <h2>
-          <b>{user?.first_name}</b>
-        </h2>
-        <h2>{user?.email}</h2>
-        <h2>Ƶ {user?.zorks.toLocaleString("pt-br")}</h2>
+        {user ? (
+          <>
+            <h2>
+              <b>{user?.first_name}</b>
+            </h2>
+            <h2>{user?.email}</h2>
+            <h2>Ƶ {user?.zorks.toLocaleString("pt-br")}</h2>
+          </>
+        ) : (
+          <></>
+        )}
       </header>
 
       <main>
@@ -92,7 +98,15 @@ const ZorkSidebar: React.FC = () => {
           icon={<AiOutlineInfoCircle size="32px" />}
           text="Requests"
           path="/requests"
-          textBubble="4"
+          textBubble={
+            user?.total_requests
+              ? user.total_requests > 0
+                ? user.total_requests > 99
+                  ? "99+"
+                  : user.total_requests.toString()
+                : ""
+              : ""
+          }
         />
       </main>
 
