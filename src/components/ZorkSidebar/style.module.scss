@@ -29,6 +29,10 @@
       font-size: 18px;
 
       color: var(--gray-200);
+
+      > a {
+        font-weight: bold;
+      }
     }
     > h1 {
       margin-top: 16px;

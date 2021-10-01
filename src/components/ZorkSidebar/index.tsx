@@ -12,6 +12,7 @@ import {
   AiOutlineUser,
 } from "react-icons/ai";
 import style from "./style.module.scss";
+import Link from "next/link";
 
 interface IZorkSidebarButton {
   text: string;
@@ -68,7 +69,9 @@ const ZorkSidebar: React.FC = () => {
         {user ? (
           <>
             <h2>
-              <b>{user?.first_name}</b>
+              <Link href={{ pathname: "/users", query: { id: user.id } }}>
+                <a>{user?.first_name}</a>
+              </Link>
             </h2>
             <h2>{user?.email}</h2>
             <h2>Ƶ {user?.zorks.toLocaleString("pt-br")}</h2>
