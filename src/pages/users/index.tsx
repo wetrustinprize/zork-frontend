@@ -17,6 +17,7 @@ import Loader from "react-loader-spinner";
 
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -25,6 +26,9 @@ const Users: NextPageWithLayout = () => {
   const router = useRouter();
 
   const { user, access_token } = useUser("/login");
+
+  const [cookies, setCookies] = useCookies(["last_seen_user"]);
+
   const [viewUser, setViewUser] = useState({} as User);
   const [viewEmail, setViewEmail] = useState("");
 
@@ -36,10 +40,24 @@ const Users: NextPageWithLayout = () => {
       return;
     }
 
-    const response = await getUserInfo(access_token, { email: viewEmail });
+    await showUser({ email: viewEmail });
+  };
+
+  const showUser = async (
+    { id, email }: { id?: string; email?: string } = {
+      id: undefined,
+      email: undefined,
+    }
+  ) => {
+    const response = await getUserInfo(access_token, {
+      id,
+      email,
+    });
 
     if (!response.error) {
-      setViewUser(response);
+      setCookies("last_seen_user", response.id);
+
+      setViewUser(response as User);
     } else {
       toast.error(response.error);
     }
@@ -47,17 +65,13 @@ const Users: NextPageWithLayout = () => {
 
   useEffect(() => {
     async function getData() {
-      if (!router.query.id) {
+      const id = router.query.id || cookies.last_seen_user || undefined;
+
+      if (!id) {
         setViewUser(undefined);
         return;
-      }
-
-      const response = await getUserInfo(access_token, {
-        id: router.query.id as string,
-      });
-
-      if (!response.error) {
-        setViewUser(response as User);
+      } else {
+        await showUser({ id });
       }
     }
 
