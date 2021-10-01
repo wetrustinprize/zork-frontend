@@ -12,16 +12,19 @@ import { User } from "@services/User/utils";
 import { BiMessageDetail } from "react-icons/bi";
 
 import { useEffect, useState } from "react";
+import { useRef } from "react";
 import Loader from "react-loader-spinner";
 
 import style from "./style.module.scss";
+import { createTransaction } from "@services/Transactions/createTransaction";
+import { toast } from "react-toastify";
 
 interface IZorkUserCard {
   viewUser: User;
 }
 
 const ZorkUserCard: React.FC<IZorkUserCard> = ({ viewUser }: IZorkUserCard) => {
-  const { access_token, user } = useUser();
+  const { access_token, user, reloadUser } = useUser();
 
   const [transactions, setTransactions] = useState([] as Transaction[]);
   const [filteredTransactions, setFilteredTransactions] = useState(
@@ -34,7 +37,37 @@ const ZorkUserCard: React.FC<IZorkUserCard> = ({ viewUser }: IZorkUserCard) => {
   const [zorkValue, setZorkValue] = useState(0);
   const [message, setMessage] = useState("");
 
-  const handleTransaction = async () => {};
+  const actionToast = useRef(null);
+  const [allowInput, setAllowInput] = useState(true);
+
+  const handleTransaction = async () => {
+    actionToast.current = toast("Sending Zorks, please wait...", {
+      autoClose: false,
+    });
+    setAllowInput(false);
+
+    const response = await createTransaction(access_token, {
+      description: message,
+      value: zorkValue,
+      id: viewUser.id,
+    });
+
+    setAllowInput(true);
+    reloadUser();
+    if (response.error) {
+      toast.update(actionToast.current, {
+        type: "error",
+        autoClose: 1000,
+        render: response.error,
+      });
+    } else {
+      toast.update(actionToast.current, {
+        type: "success",
+        autoClose: 500,
+        render: "Zorks sent!",
+      });
+    }
+  };
   const handleRequest = async () => {};
 
   useEffect(() => {
@@ -77,33 +110,41 @@ const ZorkUserCard: React.FC<IZorkUserCard> = ({ viewUser }: IZorkUserCard) => {
             <h2>{viewUser.email}</h2>
           </div>
 
-          <div className={style.userActions}>
-            <div className={style.actionsInputs}>
-              <ZorkInput
-                type="number"
-                min={1}
-                icon={<p style={{ fontSize: "24px", fontWeight: "bold" }}>Ƶ</p>}
-                placeholder="Total Zorks"
-                width="209px"
-                onChange={(e) => {
-                  setZorkValue(parseInt(e.target.value));
-                }}
-              />
-              <ZorkInput
-                type="text"
-                icon={<BiMessageDetail size={"24px"} />}
-                placeholder="Message"
-                onChange={(e) => {
-                  setMessage(e.target.value);
-                }}
-              />
-            </div>
+          {viewUser.id == user.id ? (
+            <></>
+          ) : (
+            <div className={style.userActions}>
+              <div className={style.actionsInputs}>
+                <ZorkInput
+                  disabled={!allowInput}
+                  type="number"
+                  min={1}
+                  icon={
+                    <p style={{ fontSize: "24px", fontWeight: "bold" }}>Ƶ</p>
+                  }
+                  placeholder="Total Zorks"
+                  width="209px"
+                  onChange={(e) => {
+                    setZorkValue(parseInt(e.target.value));
+                  }}
+                />
+                <ZorkInput
+                  disabled={!allowInput}
+                  type="text"
+                  icon={<BiMessageDetail size={"24px"} />}
+                  placeholder="Message"
+                  onChange={(e) => {
+                    setMessage(e.target.value);
+                  }}
+                />
+              </div>
 
-            <div className={style.actionsButtons}>
-              <ZorkButton text="Send" onClick={handleTransaction} />
-              <ZorkButton text="Request" onClick={handleRequest} />
+              <div className={style.actionsButtons}>
+                <ZorkButton text="Send" onClick={handleTransaction} />
+                <ZorkButton text="Request" onClick={handleRequest} />
+              </div>
             </div>
-          </div>
+          )}
 
           <div className={style.divider} />
 
