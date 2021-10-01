@@ -10,5 +10,26 @@
         border: 3px solid red;
         align-items: center;
         justify-content: space-between;
+
+        >aside{
+            display: block;
+            >h3{
+                color: var(--green-500);
+                font-weight: 500;
+                font-size: 1.5rem;
+            }
+
+            >h1{
+                font-size: 6rem;
+                font-weight: 300;
+                line-height: 111.5%;
+
+                >span{
+                    color: var(--green-500);
+                    font-weight: 600;
+                    margin-left: -1rem;
+                }
+            }
+        }
     }
 }
