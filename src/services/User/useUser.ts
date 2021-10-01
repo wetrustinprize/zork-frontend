@@ -42,8 +42,9 @@ const useUser = (
         const requests = await getRequests(cookies.access_token);
         const newUser = {
           ...response.data,
-          total_requests: requests.filter((req) => !req.request_canceled)
-            .length,
+          total_requests: requests.filter(
+            (req) => !req.request_canceled && !req.request_result
+          ).length,
         } as User;
 
         // Sets the new User information
