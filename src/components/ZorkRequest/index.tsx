@@ -46,7 +46,8 @@ const ZorkRequest: React.FC<IZorkTransaction> = ({
                 </a>
               </Link>
             )}{" "}
-            {request.request_result ? "sent" : "requested"} <b>{zorks}Ƶ</b> from{" "}
+            {request.request_result ? "sent" : "requested"} <b>{zorks}Ƶ</b>{" "}
+            {request.request_result ? "to" : "from"}{" "}
             {viewUser?.id == to_user.id ? (
               <b>You</b>
             ) : (
