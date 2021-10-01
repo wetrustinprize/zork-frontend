@@ -31,6 +31,12 @@ const ZorkUserCard: React.FC<IZorkUserCard> = ({ viewUser }: IZorkUserCard) => {
   const [sentFilter, setSentFilter] = useState(true);
   const [receivedFilter, setReceivedFilter] = useState(true);
 
+  const [zorkValue, setZorkValue] = useState(0);
+  const [message, setMessage] = useState("");
+
+  const handleTransaction = async () => {};
+  const handleRequest = async () => {};
+
   useEffect(() => {
     if (!user) {
       setFilteredTransactions(transactions);
@@ -79,17 +85,23 @@ const ZorkUserCard: React.FC<IZorkUserCard> = ({ viewUser }: IZorkUserCard) => {
                 icon={<p style={{ fontSize: "24px", fontWeight: "bold" }}>Ƶ</p>}
                 placeholder="Total Zorks"
                 width="209px"
+                onChange={(e) => {
+                  setZorkValue(parseInt(e.target.value));
+                }}
               />
               <ZorkInput
                 type="text"
                 icon={<BiMessageDetail size={"24px"} />}
                 placeholder="Message"
+                onChange={(e) => {
+                  setMessage(e.target.value);
+                }}
               />
             </div>
 
             <div className={style.actionsButtons}>
-              <ZorkButton text="Send" />
-              <ZorkButton text="Request" />
+              <ZorkButton text="Send" onClick={handleTransaction} />
+              <ZorkButton text="Request" onClick={handleRequest} />
             </div>
           </div>
 
