@@ -30,7 +30,6 @@ const Transactions: NextPageWithLayout = () => {
   useEffect(() => {
     async function getData() {
       const r = await getRequests(access_token);
-      console.log(r);
       setRequests(r);
     }
 
