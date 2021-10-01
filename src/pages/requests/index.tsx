@@ -24,6 +24,9 @@ const Transactions: NextPageWithLayout = () => {
 
   const { access_token, user } = useUser("/login");
 
+  const handleAccept = () => {};
+  const handleCancel = () => {};
+
   useEffect(() => {
     async function getData() {
       const r = await getRequests(access_token);
@@ -77,7 +80,15 @@ const Transactions: NextPageWithLayout = () => {
           <Loader type="Puff" />
         ) : filteredRequests.length > 0 ? (
           filteredRequests.map((r) => {
-            return <ZorkRequest key={r.id} request={r} viewUser={user} />;
+            return (
+              <ZorkRequest
+                key={r.id}
+                request={r}
+                viewUser={user}
+                onAccept={handleAccept}
+                onCancel={handleCancel}
+              />
+            );
           })
         ) : (
           <div className={style.empty}>Nothing here :(</div>

@@ -12,11 +12,15 @@ import ZorkButton from "@components/ZorkButton";
 interface IZorkTransaction {
   request: Request;
   viewUser?: User;
+  onAccept: () => void;
+  onCancel: () => void;
 }
 
 const ZorkRequest: React.FC<IZorkTransaction> = ({
   request,
   viewUser = undefined,
+  onAccept,
+  onCancel,
 }: IZorkTransaction) => {
   const { from_user, to_user, description, zorks, created_at } = request;
   const date = new Date(created_at);
@@ -71,12 +75,13 @@ const ZorkRequest: React.FC<IZorkTransaction> = ({
           ) : (
             <div>
               {request.to_id == viewUser.id ? (
-                <ZorkButton text="Accept" />
+                <ZorkButton text="Accept" onClick={onAccept} />
               ) : (
                 <></>
               )}
               <ZorkButton
                 text={request.to_id == viewUser.id ? "Refuse" : "Cancel"}
+                onClick={onCancel}
               />
             </div>
           )}
