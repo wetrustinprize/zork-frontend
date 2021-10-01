@@ -35,7 +35,7 @@
         }
     }
 
-    >div{
+    >footer{
         display: flex;
         align-items: center;
         width: 100%;
@@ -46,19 +46,11 @@
             display: inline-flex;
             align-items: center;
             gap: 1rem;
-        }
 
-        >div:nth-child(2){
-            display: inline-flex;
-            justify-content: center;
-            width: 50%;
-
-
-            >button{
-                align-self: center;
-                width: 10rem;
-                height: 4rem;
-                background: var(--green-500);
+            >p{
+                font-weight: 300;
+                font-size: 20px;
+                line-height: 111.5%;
             }
         }
     }

@@ -24,7 +24,7 @@ const Landing: React.FC = () => {
                         </aside>
                         <img src="/images/illustration.svg" alt="Illustration" />
                      </section>
-                     <div>
+                     <footer>
                         <div>
                             <img src="/images/shield.svg" alt="Shield"/>
                             <p>
@@ -32,13 +32,8 @@ const Landing: React.FC = () => {
                                 payments easy, reliable and secure. 
                             </p>
                         </div>
-                        <div>
-                            <button>
-                                Get started
-                                <BiRightArrow size={24} color="#FFF"/>
-                            </button>
-                        </div>
-                     </div>
+                       
+                     </footer>
                 </main>
         </>
     )
