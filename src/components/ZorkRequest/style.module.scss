@@ -1,0 +1,76 @@
+.zorkRequest {
+  display: flex;
+
+  margin: 32px 0;
+
+  > * {
+    margin: 0 12px;
+  }
+
+  > .zorkIcons {
+    flex: 0 0 auto;
+
+    display: flex;
+    align-items: center;
+
+    > div {
+      min-width: 72px;
+
+      border-radius: 91px;
+
+      &:not(.canceled) {
+        background-color: var(--green-500);
+      }
+
+      &.canceled {
+        background-color: var(--gray-500);
+      }
+
+      > p {
+        font-size: 48px;
+        text-align: center;
+        color: white;
+      }
+    }
+  }
+
+  > .zorkInfo {
+    flex: 1 0 auto;
+
+    > header {
+      display: flex;
+      align-items: center;
+
+      font-size: 24px;
+
+      > p.canceled {
+        color: var(--gray-200);
+
+        text-decoration: line-through;
+        text-decoration-thickness: 2px;
+      }
+    }
+
+    > footer {
+      > p {
+        font-size: 18px;
+        color: var(--gray-200);
+      }
+
+      > div {
+        margin-top: 8px;
+        > * {
+          margin: 0 6px 0 0;
+        }
+      }
+    }
+  }
+
+  > .zorkTimestamp {
+    flex: 0 1 auto;
+
+    > p {
+      color: var(--gray-200);
+    }
+  }
+}
