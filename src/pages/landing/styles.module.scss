@@ -1,0 +1,14 @@
+.landingContainer{
+    width: 100vw;
+    height: 100vh;
+    background: #F6F6F6;
+    padding: 0 2.8rem;
+
+    >section{
+        display: flex;
+        width: 100%;
+        border: 3px solid red;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
