@@ -6,7 +6,9 @@ import Router from "next/router";
 import { api } from "src/utils/api";
 
 import type { User } from "./utils";
+
 import { getRequests } from "@services/Requests/getRequests";
+import { Request } from "@services/Requests/utils";
 
 /**
  * React hook that give information about the authenticated user. Also returns the access token to make other requests.
@@ -43,17 +45,13 @@ const useUser = (
         const newUser = {
           ...response.data,
           total_requests: requests.filter(
-            (req) => !req.request_canceled && !req.request_result
+            (req: Request) => !req.request_canceled && !req.request_result
           ).length,
         } as User;
 
         // Sets the new User information
         setUser(newUser);
-        setCookies("user", newUser, {
-          path: "/",
-          sameSite: true,
-          maxAge: 0,
-        });
+        setCookies("user", newUser);
 
         // Check if should redirect if found User
         if (redirectIfFound && redirectTo) {
@@ -87,12 +85,14 @@ const useUser = (
 
     // check if has User in cookies
     if (!cookies.user) {
+      console.log("no cookies");
       getUser();
-      return;
+    } else {
+      setUser(cookies.user);
     }
-  }, [cookies.user]);
+  });
 
-  return { access_token: cookies.access_token, user: user, reloadUser };
+  return { access_token: cookies.access_token, user, reloadUser };
 };
 
 export { useUser };
