@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { LandingHeader } from "@components/ZorkLandingHeader"
 import Head from "next/head"
-import { BiLeftArrow, BiRightArrow } from "react-icons/bi"
 import styles from './styles.module.scss'
 
 const Landing: React.FC = () => {
