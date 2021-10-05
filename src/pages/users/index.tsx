@@ -5,7 +5,8 @@ import ZorkSidebar from "@components/ZorkSidebar";
 import ZorkUserCard from "@components/ZorkUserCard";
 import ZorkButton from "@components/ZorkButton";
 
-import { useUser } from "@services/User/useUser";
+import { useToken } from "@hooks/useToken";
+
 import { User } from "@services/User/utils";
 import getUserInfo from "@services/User/getUserInfo";
 
@@ -25,11 +26,11 @@ import "react-toastify/dist/ReactToastify.css";
 const Users: NextPageWithLayout = () => {
   const router = useRouter();
 
-  const { user, access_token } = useUser("/login");
+  const access_token = useToken();
 
   const [cookies, setCookies] = useCookies(["last_seen_user"]);
 
-  const [viewUser, setViewUser] = useState({} as User);
+  const [viewUser, setViewUser] = useState(undefined as User);
   const [viewEmail, setViewEmail] = useState("");
 
   const handleFind = async (e) => {
@@ -81,7 +82,7 @@ const Users: NextPageWithLayout = () => {
   return (
     <>
       <main className={style.usersMain}>
-        {!user ? (
+        {!access_token ? (
           <div className={style.loading}>
             <Loader type="Puff" />
           </div>
@@ -103,7 +104,7 @@ const Users: NextPageWithLayout = () => {
               </form>
             </header>
 
-            <ZorkUserCard viewUser={viewUser ? viewUser : user} />
+            <ZorkUserCard viewUser={viewUser} />
           </>
         )}
       </main>

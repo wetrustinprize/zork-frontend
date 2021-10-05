@@ -9,7 +9,7 @@ import ZorkInput from "@components/ZorkInput";
 import ZorkButton from "@components/ZorkButton";
 
 import { loginUser } from "@services/User/loginUser";
-import { useUser } from "@services/User/useUser";
+import { useUser } from "@hooks/useUser";
 
 import { useState } from "react";
 

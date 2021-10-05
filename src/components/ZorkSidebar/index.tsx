@@ -1,4 +1,4 @@
-import { useUser } from "@services/User/useUser";
+import { useUser } from "@hooks/useUser";
 import {
   HTMLAttributes,
   ReactElement,

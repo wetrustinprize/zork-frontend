@@ -5,7 +5,7 @@ import ZorkRequest from "@components/ZorkRequest";
 
 import { Request } from "@services/Requests/utils";
 import { getRequests } from "@services/Requests/getRequests";
-import { useUser } from "@services/User/useUser";
+import { useUser } from "@hooks/useUser";
 
 import { NextPageWithLayout } from "@pages/utils";
 

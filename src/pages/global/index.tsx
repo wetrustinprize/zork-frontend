@@ -5,7 +5,7 @@ import { ZorkToggle } from "@components/ZorkToggle";
 
 import { getTransactions } from "@services/Transactions/getTransactions";
 import { Transaction } from "@services/Transactions/utils";
-import { useUser } from "@services/User/useUser";
+import { useUser } from "@hooks/useUser";
 
 import { NextPageWithLayout } from "@pages/utils";
 
