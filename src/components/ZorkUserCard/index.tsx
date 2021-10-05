@@ -6,7 +6,7 @@ import ZorkTransaction from "@components/ZorkTransaction";
 import { getTransactions } from "@services/Transactions/getTransactions";
 import { Transaction } from "@services/Transactions/utils";
 
-import { useUser } from "@services/User/useUser";
+import { useUser } from "@hooks/useUser";
 import { User } from "@services/User/utils";
 
 import { BiMessageDetail } from "react-icons/bi";
@@ -24,7 +24,7 @@ interface IZorkUserCard {
 }
 
 const ZorkUserCard: React.FC<IZorkUserCard> = ({ viewUser }: IZorkUserCard) => {
-  const { access_token, user, reloadUser } = useUser();
+  const { access_token, user, refreshUser } = useUser();
 
   const [transactions, setTransactions] = useState([] as Transaction[]);
   const [filteredTransactions, setFilteredTransactions] = useState(
@@ -40,6 +40,11 @@ const ZorkUserCard: React.FC<IZorkUserCard> = ({ viewUser }: IZorkUserCard) => {
   const actionToast = useRef(null);
   const [allowInput, setAllowInput] = useState(true);
 
+  // Check if viewUser is undefined and sets the logged user as the view
+  if (viewUser == undefined) {
+    viewUser = user;
+  }
+
   const handleTransaction = async () => {
     actionToast.current = toast("Sending Zorks, please wait...", {
       autoClose: false,
@@ -53,7 +58,7 @@ const ZorkUserCard: React.FC<IZorkUserCard> = ({ viewUser }: IZorkUserCard) => {
     });
 
     setAllowInput(true);
-    reloadUser();
+    refreshUser();
     if (response.error) {
       toast.update(actionToast.current, {
         type: "error",
