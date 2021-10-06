@@ -92,6 +92,11 @@ const ZorkUserCard: React.FC<IZorkUserCard> = ({ viewUser }: IZorkUserCard) => {
 
   useEffect(() => {
     async function getData() {
+      if (!viewUser) {
+        setTransactions([]);
+        return;
+      }
+
       const t = await getTransactions(access_token, { withID: viewUser.id });
 
       if (!t.error) {
