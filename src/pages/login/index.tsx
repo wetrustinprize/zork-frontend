@@ -1,6 +1,7 @@
 import styles from "./login.module.scss";
 
 import Head from "next/head";
+import { useRouter } from "next/router";
 
 import { AiOutlineMail } from "react-icons/ai";
 import { BsLock } from "react-icons/bs";
@@ -9,14 +10,14 @@ import ZorkInput from "@components/ZorkInput";
 import ZorkButton from "@components/ZorkButton";
 
 import { loginUser } from "@services/User/loginUser";
-import { useUser } from "@hooks/useUser";
 
-import { useState } from "react";
+import { useToken } from "@hooks/useToken";
+
+import { useState, useEffect } from "react";
+import { useCookies } from "react-cookie";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
-import { useCookies } from "react-cookie";
 
 import Loader from "react-loader-spinner";
 
@@ -24,9 +25,10 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [_, setCookie] = useCookies(["access_token"]);
+  const access_token = useToken(undefined);
+  const Router = useRouter();
 
-  const { user } = useUser("/", true);
+  const [_, setCookie] = useCookies(["access_token"]);
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
@@ -44,6 +46,12 @@ const Login: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    if (access_token) {
+      Router.push("/");
+    }
+  }, [access_token]);
+
   return (
     <>
       <Head>
@@ -51,7 +59,7 @@ const Login: React.FC = () => {
       </Head>
 
       <main className={styles.login_screen}>
-        {!user ? (
+        {access_token ? (
           <Loader type="Puff" />
         ) : (
           <form className={styles.login} onSubmit={handleLoginSubmit}>
