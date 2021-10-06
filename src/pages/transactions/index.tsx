@@ -14,6 +14,7 @@ import { useState, useEffect } from "react";
 import style from "./style.module.scss";
 
 import Loader from "react-loader-spinner";
+import UserProvider from "@components/UserProvider";
 
 const Transactions: NextPageWithLayout = () => {
   const [transactions, setTransactions] = useState([] as Transaction[]);
@@ -91,10 +92,12 @@ const Transactions: NextPageWithLayout = () => {
 
 Transactions.getLayout = (page) => {
   return (
-    <ZorkLayout>
-      <ZorkSidebar />
-      {page}
-    </ZorkLayout>
+    <UserProvider>
+      <ZorkLayout>
+        <ZorkSidebar />
+        {page}
+      </ZorkLayout>
+    </UserProvider>
   );
 };
 

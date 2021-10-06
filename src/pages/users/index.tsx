@@ -22,6 +22,7 @@ import { useCookies } from "react-cookie";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import UserProvider from "@components/UserProvider";
 
 const Users: NextPageWithLayout = () => {
   const router = useRouter();
@@ -88,22 +89,6 @@ const Users: NextPageWithLayout = () => {
           </div>
         ) : (
           <>
-            <header>
-              <h1>Users</h1>
-
-              <form className={style.searchBar} onSubmit={handleFind}>
-                <IoMdSearch size={"40px"} />
-                <input
-                  type="text"
-                  placeholder="User email..."
-                  onChange={(e) => {
-                    setViewEmail(e.target.value);
-                  }}
-                />
-                <ZorkButton text="Search" isSubmit />
-              </form>
-            </header>
-
             <ZorkUserCard viewUser={viewUser} />
           </>
         )}
@@ -115,10 +100,12 @@ const Users: NextPageWithLayout = () => {
 
 Users.getLayout = (page) => {
   return (
-    <ZorkLayout>
-      <ZorkSidebar />
-      {page}
-    </ZorkLayout>
+    <UserProvider>
+      <ZorkLayout>
+        <ZorkSidebar />
+        {page}
+      </ZorkLayout>
+    </UserProvider>
   );
 };
 
