@@ -14,7 +14,7 @@ interface IGetUserConf {
  */
 const getUserInfo = async (
   access_token: string,
-  conf: IGetUserConf
+  conf: IGetUserConf = { email: undefined, id: undefined }
 ): Promise<any> => {
   const { email, id } = conf;
 
@@ -30,7 +30,9 @@ const getUserInfo = async (
         headers: { Authorization: "Bearer " + access_token },
       });
     } else {
-      throw new Error("Must have either ID or Email");
+      response = await api.get("/user", {
+        headers: { Authorization: "Bearer " + access_token },
+      });
     }
 
     return response.data as User;
