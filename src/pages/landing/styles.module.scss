@@ -1,0 +1,57 @@
+.landingContainer{
+    width: 100vw;
+    height: calc(100vh - 7.4rem);
+    background: #F6F6F6;
+    padding: 0 2.8rem;
+    
+
+    >section{
+        display: flex;
+        width: 100%;
+
+        align-items: center;
+        justify-content: space-between;
+
+        >aside{
+            display: block;
+            >h3{
+                color: var(--green-500);
+                font-weight: 500;
+                font-size: 1.5rem;
+                margin-bottom: 1rem;
+            }
+
+            >h1{
+                font-size: 6rem;
+                font-weight: 300;
+                line-height: 111.5%;
+
+                >span{
+                    color: var(--green-500);
+                    font-weight: 600;
+                    margin-left: -1rem;
+                }
+            }
+        }
+    }
+
+    >footer{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 3rem;
+
+        >div:nth-child(1){
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+
+            >p{
+                font-weight: 300;
+                font-size: 20px;
+                line-height: 111.5%;
+            }
+        }
+    }
+}

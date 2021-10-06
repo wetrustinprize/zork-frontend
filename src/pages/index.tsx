@@ -10,7 +10,11 @@ const Home: React.FC = () => {
         <title>Zork</title>
       </Head>
 
-      <h1>Welcome to Zork!</h1>
+      <main>
+        <header>
+          <h2>Support</h2>
+        </header>
+      </main>
     </>
   ) : (
     <>
