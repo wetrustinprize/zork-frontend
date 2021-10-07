@@ -7,7 +7,7 @@ import { Request } from "@services/Requests/utils";
 import { getRequests } from "@services/Requests/getRequests";
 import { useUser } from "@hooks/useUser";
 
-import { NextPageWithLayout } from "@pages/utils";
+import { NextPageWithLayout } from "src/libs/utils";
 
 import { useState, useEffect } from "react";
 

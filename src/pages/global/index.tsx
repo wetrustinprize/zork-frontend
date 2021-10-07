@@ -7,7 +7,7 @@ import { getTransactions } from "@services/Transactions/getTransactions";
 import { Transaction } from "@services/Transactions/utils";
 import { useUser } from "@hooks/useUser";
 
-import { NextPageWithLayout } from "@pages/utils";
+import { NextPageWithLayout } from "src/libs/utils";
 
 import { useState, useEffect } from "react";
 

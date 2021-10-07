@@ -1,7 +1,7 @@
 import { CookiesProvider } from "react-cookie";
 import "../styles/Global.scss";
 
-import { AppPropsWithLayout } from "@pages/utils";
+import { AppPropsWithLayout } from "src/libs/utils";
 import { Provider } from "react-redux";
 import store from "src/store";
 

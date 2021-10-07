@@ -1,4 +1,4 @@
-import { NextPageWithLayout } from "@pages/utils";
+import { NextPageWithLayout } from "src/libs/utils";
 
 import ZorkLayout from "@components/ZorkLayout";
 import ZorkSidebar from "@components/ZorkSidebar";
