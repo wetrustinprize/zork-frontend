@@ -1,7 +1,6 @@
 import styles from "./login.module.scss";
 
 import Head from "next/head";
-import { useRouter } from "next/router";
 
 import { AiOutlineMail } from "react-icons/ai";
 import { BsLock } from "react-icons/bs";
@@ -13,7 +12,7 @@ import { loginUser } from "@services/User/loginUser";
 
 import { useToken } from "@hooks/useToken";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useCookies } from "react-cookie";
 
 import { toast, ToastContainer } from "react-toastify";
