@@ -17,6 +17,8 @@ import Loader from "react-loader-spinner";
 import UserProvider from "@components/UserProvider";
 
 import Head from "next/head";
+import { methodRequest } from "@services/Requests/methodRequest";
+import { toast, ToastContainer } from "react-toastify";
 
 const Transactions: NextPageWithLayout = () => {
   const [requests, setRequests] = useState([] as Request[]);
@@ -26,9 +28,24 @@ const Transactions: NextPageWithLayout = () => {
   const [receivedFilter, setReceivedFilter] = useState(true);
 
   const { access_token, user } = useUser("/login");
+  const { refreshUser } = useUser();
 
-  const handleAccept = () => {};
-  const handleCancel = () => {};
+  const requestMethod = async (method: "accept" | "refuse", id: string) => {
+    const response = await methodRequest(access_token, {
+      method,
+      id,
+    });
+
+    refreshUser();
+    if (response.error) {
+      toast.error(response.error, { autoClose: 500 });
+    } else {
+      toast.success(
+        "Zork " + (method == "accept" ? "accepted" : "refused") + "!",
+        { autoClose: 1000 }
+      );
+    }
+  };
 
   useEffect(() => {
     async function getData() {
@@ -91,8 +108,7 @@ const Transactions: NextPageWithLayout = () => {
                   key={r.id}
                   request={r}
                   viewUser={user}
-                  onAccept={handleAccept}
-                  onCancel={handleCancel}
+                  onClick={requestMethod}
                 />
               );
             })
@@ -101,6 +117,7 @@ const Transactions: NextPageWithLayout = () => {
           )}
         </main>
       </div>
+      <ToastContainer position="top-center" />
     </>
   );
 };

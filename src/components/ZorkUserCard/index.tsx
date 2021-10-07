@@ -18,6 +18,7 @@ import Loader from "react-loader-spinner";
 import style from "./style.module.scss";
 import { createTransaction } from "@services/Transactions/createTransaction";
 import { toast } from "react-toastify";
+import { createRequest } from "@services/Requests/createRequest";
 
 interface IZorkUserCard {
   viewUser: User;
@@ -73,7 +74,34 @@ const ZorkUserCard: React.FC<IZorkUserCard> = ({ viewUser }: IZorkUserCard) => {
       });
     }
   };
-  const handleRequest = async () => {};
+  const handleRequest = async () => {
+    actionToast.current = toast("Sending Zork request, please wait...", {
+      autoClose: false,
+    });
+    setAllowInput(false);
+
+    const response = await createRequest(access_token, {
+      email: viewUser.email,
+      description: message,
+      value: zorkValue,
+    });
+
+    setAllowInput(true);
+    refreshUser();
+    if (response.error) {
+      toast.update(actionToast.current, {
+        type: "error",
+        autoClose: 1000,
+        render: response.error,
+      });
+    } else {
+      toast.update(actionToast.current, {
+        type: "success",
+        autoClose: 500,
+        render: "Zork request sent!",
+      });
+    }
+  };
 
   useEffect(() => {
     if (!user) {

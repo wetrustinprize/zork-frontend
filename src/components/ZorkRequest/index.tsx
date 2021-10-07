@@ -1,26 +1,29 @@
 import style from "./style.module.scss";
 
-import { FaExchangeAlt } from "react-icons/fa";
-import { AiFillEyeInvisible } from "react-icons/ai";
 import { format } from "date-fns";
 
 import { User } from "@services/User/utils";
 import { Request } from "@services/Requests/utils";
+import { methodRequest } from "@services/Requests/methodRequest";
 
 import Link from "next/link";
+
 import ZorkButton from "@components/ZorkButton";
+
+import { useToken } from "@hooks/useToken";
+import { useUser } from "@hooks/useUser";
+
+import { toast } from "react-toastify";
 interface IZorkTransaction {
   request: Request;
   viewUser?: User;
-  onAccept: () => void;
-  onCancel: () => void;
+  onClick: (method: "accept" | "refuse", id: string) => void;
 }
 
 const ZorkRequest: React.FC<IZorkTransaction> = ({
   request,
   viewUser = undefined,
-  onAccept,
-  onCancel,
+  onClick,
 }: IZorkTransaction) => {
   const { from_user, to_user, description, zorks, created_at } = request;
   const date = new Date(created_at);
@@ -75,13 +78,20 @@ const ZorkRequest: React.FC<IZorkTransaction> = ({
           ) : (
             <div>
               {request.to_id == viewUser.id ? (
-                <ZorkButton text="Accept" onClick={onAccept} />
+                <ZorkButton
+                  text="Accept"
+                  onClick={() => {
+                    onClick("accept", request.id);
+                  }}
+                />
               ) : (
                 <></>
               )}
               <ZorkButton
                 text={request.to_id == viewUser.id ? "Refuse" : "Cancel"}
-                onClick={onCancel}
+                onClick={() => {
+                  onClick("refuse", request.id);
+                }}
               />
             </div>
           )}
