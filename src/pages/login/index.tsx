@@ -25,8 +25,7 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const access_token = useToken("/", true);
-  const Router = useRouter();
+  const access_token = useToken("/global", true);
 
   const [_, setCookie] = useCookies(["access_token"]);
 

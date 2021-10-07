@@ -8,17 +8,21 @@ import { BsLock, BsPerson } from "react-icons/bs";
 
 import styles from "./signup.module.scss";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { registerUser } from "src/services/User/registerUser";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useToken } from "@hooks/useToken";
+import Loader from "react-loader-spinner";
 
 //TODO: Register AND login the user, there's no logic in just registering and not logging the user in
 const Signup: React.FC = () => {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const access_token = useToken("/global", true);
 
   const handleSingupSubmit = async (e) => {
     e.preventDefault();
@@ -39,37 +43,41 @@ const Signup: React.FC = () => {
       </Head>
 
       <main className={styles.signup_screen}>
-        <form className={styles.signup} onSubmit={handleSingupSubmit}>
-          <h1>Sign Up</h1>
-          <ZorkInput
-            type="text"
-            placeholder="Your full name"
-            icon={<BsPerson size="20px" />}
-            name="fullName"
-            onChange={(e) => {
-              setFullname(e.target.value);
-            }}
-          />
-          <ZorkInput
-            type="text"
-            placeholder="Your email"
-            icon={<AiOutlineMail size="20px" />}
-            name="email"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-          <ZorkInput
-            type="password"
-            placeholder="Your password"
-            icon={<BsLock size="20px" />}
-            name="password"
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-          <ZorkButton text="Register" isSubmit />
-        </form>
+        {access_token ? (
+          <Loader type="Puff" />
+        ) : (
+          <form className={styles.signup} onSubmit={handleSingupSubmit}>
+            <h1>Sign Up</h1>
+            <ZorkInput
+              type="text"
+              placeholder="Your full name"
+              icon={<BsPerson size="20px" />}
+              name="fullName"
+              onChange={(e) => {
+                setFullname(e.target.value);
+              }}
+            />
+            <ZorkInput
+              type="text"
+              placeholder="Your email"
+              icon={<AiOutlineMail size="20px" />}
+              name="email"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
+            <ZorkInput
+              type="password"
+              placeholder="Your password"
+              icon={<BsLock size="20px" />}
+              name="password"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+            <ZorkButton text="Register" isSubmit />
+          </form>
+        )}
       </main>
 
       <ToastContainer position="top-center" />
