@@ -1,3 +1,5 @@
 {
-  "cSpell.words": ["zork"]
+  "cSpell.words": ["zork"],
+  "todo-tree.tree.scanMode": "workspace only",
+  "todo-tree.tree.showCountsInTree": false
 }

@@ -6,7 +6,6 @@ interface IRegisterUser {
   password: string;
 }
 
-// TODO: Make return only the User data instead of all the response data
 const registerUser = async ({ fullname, email, password }: IRegisterUser) => {
   try {
     const response = await api.post("/user", { fullname, email, password });

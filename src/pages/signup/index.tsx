@@ -16,7 +16,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { useToken } from "@hooks/useToken";
 import Loader from "react-loader-spinner";
 
-//TODO: Register AND login the user, there's no logic in just registering and not logging the user in
 const Signup: React.FC = () => {
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
