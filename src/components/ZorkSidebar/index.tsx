@@ -13,32 +13,31 @@ import {
 } from "react-icons/ai";
 import style from "./style.module.scss";
 import Link from "next/link";
+import { useCookies } from "react-cookie";
 
 interface IZorkSidebarButton {
   text: string;
   path: string;
   icon: ReactElement;
+  onClick: (path: string) => void;
   textBubble?: string;
 }
 
-const ZorkSidebarButton: React.FC<
-  IZorkSidebarButton & HTMLAttributes<HTMLButtonElement>
-> = ({
+const ZorkSidebarButton: React.FC<IZorkSidebarButton> = ({
   text,
   path,
   icon,
   textBubble = "",
-  ...props
-}: IZorkSidebarButton & HTMLAttributes<HTMLButtonElement>) => {
+  onClick,
+}: IZorkSidebarButton) => {
   const router = useRouter();
   const selected = router.pathname == path;
 
   return (
     <button
-      {...props}
       className={style.zorkSidebarButton}
       onClick={() => {
-        router.push(path);
+        onClick(path);
       }}
     >
       <div className={selected ? style.selected : undefined} />
@@ -49,11 +48,14 @@ const ZorkSidebarButton: React.FC<
   );
 };
 
-// TODO: Make the user logout
-interface IZorkSidebarLogoutButton {}
-const ZorkSidebarLogoutButton: React.FC<IZorkSidebarLogoutButton> = () => {
+interface IZorkSidebarLogoutButton {
+  onClick: () => void;
+}
+const ZorkSidebarLogoutButton: React.FC<IZorkSidebarLogoutButton> = ({
+  onClick,
+}: IZorkSidebarLogoutButton) => {
   return (
-    <button className={style.zorkSidebarLogoutButton}>
+    <button className={style.zorkSidebarLogoutButton} onClick={onClick}>
       {<AiOutlineLogout size="36px" />}
     </button>
   );
@@ -61,6 +63,16 @@ const ZorkSidebarLogoutButton: React.FC<IZorkSidebarLogoutButton> = () => {
 
 const ZorkSidebar: React.FC = () => {
   const { user } = useUser();
+  const [, , removeCookie] = useCookies(["access_token"]);
+  const Router = useRouter();
+
+  const logoutUser = () => {
+    Router.push("/logout", "/");
+  };
+
+  const pathRedir = (path: string) => {
+    Router.push(path);
+  };
 
   return (
     <div className={style.zorkSidebar}>
@@ -86,21 +98,25 @@ const ZorkSidebar: React.FC = () => {
           icon={<AiOutlineHome size="32px" />}
           text="Home"
           path="/global"
+          onClick={pathRedir}
         />
         <ZorkSidebarButton
           icon={<AiOutlineUser size="32px" />}
           text="Users"
           path="/users"
+          onClick={pathRedir}
         />
         <ZorkSidebarButton
           icon={<AiOutlineTransaction size="32px" />}
           text="Transactions"
           path="/transactions"
+          onClick={pathRedir}
         />
         <ZorkSidebarButton
           icon={<AiOutlineInfoCircle size="32px" />}
           text="Requests"
           path="/requests"
+          onClick={pathRedir}
           textBubble={
             user?.total_requests
               ? user.total_requests > 0
@@ -114,7 +130,7 @@ const ZorkSidebar: React.FC = () => {
       </main>
 
       <footer>
-        <ZorkSidebarLogoutButton />
+        <ZorkSidebarLogoutButton onClick={logoutUser} />
       </footer>
     </div>
   );
