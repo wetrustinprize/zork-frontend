@@ -1,6 +1,10 @@
 <h1 align="center">Ƶork Frontend</h1>
 <h4 align="center">made with: Next.Js</h4>
 
+<img src="./print.png">
+
+---
+
 - [About](#about)
 - [Links](#links)
 - [Credits](#credits)
