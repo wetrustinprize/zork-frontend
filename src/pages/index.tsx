@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { LandingHeader } from "@components/ZorkLandingHeader";
 import Head from "next/head";
-import styles from "./styles.module.scss";
+import styles from "./index.module.scss";
 
 const Landing: React.FC = () => {
   return (

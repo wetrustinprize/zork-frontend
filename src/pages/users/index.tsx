@@ -10,8 +10,6 @@ import { useToken } from "@hooks/useToken";
 import { User } from "@services/User/utils";
 import getUserInfo from "@services/User/getUserInfo";
 
-import { IoMdSearch } from "react-icons/io";
-
 import style from "./style.module.scss";
 
 import Loader from "react-loader-spinner";

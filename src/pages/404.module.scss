@@ -1,0 +1,49 @@
+.fourohfour {
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  > div {
+    margin: 0 12px;
+  }
+
+  > .divider {
+    width: 2px;
+    height: 80px;
+    background-color: var(--gray-200);
+  }
+
+  > .text {
+    a {
+      color: var(--green-500);
+      font-weight: bold;
+
+      transition: all 0.2s;
+
+      &:hover {
+        color: var(--green-300);
+      }
+    }
+  }
+
+  > .fourText {
+    color: var(--green-500);
+
+    > h1 {
+      font-size: 64px;
+      animation: textAnim ease-in-out 2s alternate infinite;
+    }
+  }
+}
+
+@keyframes textAnim {
+  from {
+    transform: translateY(2%);
+  }
+  to {
+    transform: translateY(-2%);
+  }
+}
