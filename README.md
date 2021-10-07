@@ -21,5 +21,5 @@ _This project requires the Zork backend running_, check it out [here](https://gi
 
 | who                                               | what                                                                                                         |
 | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| Peterson Adami Candido                            | Design + Coding                                                                                              |
+| Peterson Adami Candido                            | Design + _Everything else not listed below_                                                                  |
 | [Gustavo Fernandes](https://github.com/nGustavin) | Design + [Next Template](https://github.com/nGustavin/nextjs-template) + Index Page + Helping _(thanks bro)_ |
