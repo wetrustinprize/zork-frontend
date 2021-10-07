@@ -1,17 +1,29 @@
 import { useAppDispatch } from "@hooks/redux";
 import { useToken } from "@hooks/useToken";
+
 import { getAuthUser } from "@services/User/getAuthuser";
-import { useState } from "react";
+
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+
+import { useEffect, useState } from "react";
+
 import { setUser } from "src/features/user/userSlice";
+import Loader from "react-loader-spinner";
+
+import style from "./style.module.scss";
 
 const UserProvider: React.FC = ({ children }) => {
   const access_token = useToken();
   const dispatch = useAppDispatch();
   const Router = useRouter();
+  const [foundUser, setFoundUser] = useState(false);
 
   useEffect(() => {
+    if (!access_token) {
+      Router.push("/login");
+      return;
+    }
+
     const getData = async () => {
       const newUser = await getAuthUser(access_token);
 
@@ -24,12 +36,23 @@ const UserProvider: React.FC = ({ children }) => {
       }
 
       dispatch(setUser(newUser));
+      setFoundUser(true);
     };
 
     getData();
   });
 
-  return <>{children}</>;
+  return (
+    <>
+      {foundUser ? (
+        children
+      ) : (
+        <div className={style.loading}>
+          <Loader type="Puff" />
+        </div>
+      )}
+    </>
+  );
 };
 
 export default UserProvider;
