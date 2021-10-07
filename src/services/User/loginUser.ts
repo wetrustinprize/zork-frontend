@@ -5,8 +5,6 @@ interface ILoginRequest {
   password: string;
 }
 
-// TODO: Make return only the access token instead of all the data
-// TODO: Make the access token store in the cookie jar
 const loginUser = async ({ email, password }: ILoginRequest) => {
   try {
     const response = await api.post("/login", { email, password });
