@@ -23,6 +23,7 @@ import { useCookies } from "react-cookie";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserProvider from "@components/UserProvider";
+import Head from "next/head";
 
 const Users: NextPageWithLayout = () => {
   const router = useRouter();
@@ -82,6 +83,9 @@ const Users: NextPageWithLayout = () => {
 
   return (
     <>
+      <Head>
+        <title>Zork - Users</title>
+      </Head>
       <main className={style.usersMain}>
         {!access_token ? (
           <div className={style.loading}>

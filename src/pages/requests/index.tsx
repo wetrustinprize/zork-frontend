@@ -16,6 +16,8 @@ import style from "./style.module.scss";
 import Loader from "react-loader-spinner";
 import UserProvider from "@components/UserProvider";
 
+import Head from "next/head";
+
 const Transactions: NextPageWithLayout = () => {
   const [requests, setRequests] = useState([] as Request[]);
   const [filteredRequests, setFilteredRequests] = useState([] as Request[]);
@@ -54,47 +56,52 @@ const Transactions: NextPageWithLayout = () => {
   }, [requests, sentFilter, receivedFilter]);
 
   return (
-    <div className={style.container}>
-      <header>
-        <h1>Your Zork requests</h1>
-        <div>
-          <ZorkToggle
-            text="Sent"
-            unchecked={!sentFilter}
-            onToggle={(v) => {
-              setSentFilter(v);
-            }}
-          />
-          <ZorkToggle
-            text="Received"
-            unchecked={!receivedFilter}
-            onToggle={(v) => {
-              setReceivedFilter(v);
-            }}
-          />
-        </div>
-      </header>
+    <>
+      <Head>
+        <title>Zork - Requests</title>
+      </Head>
+      <div className={style.container}>
+        <header>
+          <h1>Your Zork requests</h1>
+          <div>
+            <ZorkToggle
+              text="Sent"
+              unchecked={!sentFilter}
+              onToggle={(v) => {
+                setSentFilter(v);
+              }}
+            />
+            <ZorkToggle
+              text="Received"
+              unchecked={!receivedFilter}
+              onToggle={(v) => {
+                setReceivedFilter(v);
+              }}
+            />
+          </div>
+        </header>
 
-      <main className={!user ? style.loading : style.requests}>
-        {!user ? (
-          <Loader type="Puff" />
-        ) : filteredRequests.length > 0 ? (
-          filteredRequests.map((r) => {
-            return (
-              <ZorkRequest
-                key={r.id}
-                request={r}
-                viewUser={user}
-                onAccept={handleAccept}
-                onCancel={handleCancel}
-              />
-            );
-          })
-        ) : (
-          <div className={style.empty}>Nothing here :(</div>
-        )}
-      </main>
-    </div>
+        <main className={!user ? style.loading : style.requests}>
+          {!user ? (
+            <Loader type="Puff" />
+          ) : filteredRequests.length > 0 ? (
+            filteredRequests.map((r) => {
+              return (
+                <ZorkRequest
+                  key={r.id}
+                  request={r}
+                  viewUser={user}
+                  onAccept={handleAccept}
+                  onCancel={handleCancel}
+                />
+              );
+            })
+          ) : (
+            <div className={style.empty}>Nothing here :(</div>
+          )}
+        </main>
+      </div>
+    </>
   );
 };
 

@@ -16,6 +16,8 @@ import style from "./style.module.scss";
 import Loader from "react-loader-spinner";
 import UserProvider from "@components/UserProvider";
 
+import Head from "next/head";
+
 const Transactions: NextPageWithLayout = () => {
   const [transactions, setTransactions] = useState([] as Transaction[]);
   const [filteredTransactions, setFilteredTransactions] = useState(
@@ -54,42 +56,47 @@ const Transactions: NextPageWithLayout = () => {
   }, [transactions, youFilter, otherFilter]);
 
   return (
-    <div className={style.container}>
-      <header>
-        <h1>Latest Zork transactions</h1>
+    <>
+      <Head>
+        <title>Zork - Global</title>
+      </Head>
+      <div className={style.container}>
+        <header>
+          <h1>Latest Zork transactions</h1>
 
-        <div>
-          <ZorkToggle
-            text="You"
-            unchecked={!youFilter}
-            onToggle={(v) => {
-              setYouFilter(v);
-            }}
-          />
-          <ZorkToggle
-            text="Others"
-            unchecked={!otherFilter}
-            onToggle={(v) => {
-              setOtherFilter(v);
-            }}
-          />
-        </div>
-      </header>
+          <div>
+            <ZorkToggle
+              text="You"
+              unchecked={!youFilter}
+              onToggle={(v) => {
+                setYouFilter(v);
+              }}
+            />
+            <ZorkToggle
+              text="Others"
+              unchecked={!otherFilter}
+              onToggle={(v) => {
+                setOtherFilter(v);
+              }}
+            />
+          </div>
+        </header>
 
-      <main className={!user ? style.loading : style.transactions}>
-        {!user ? (
-          <Loader type="Puff" />
-        ) : filteredTransactions.length > 0 ? (
-          filteredTransactions.map((t) => {
-            return (
-              <ZorkTransaction key={t.id} transaction={t} viewUser={user} />
-            );
-          })
-        ) : (
-          <div className={style.empty}>Nothing here :(</div>
-        )}
-      </main>
-    </div>
+        <main className={!user ? style.loading : style.transactions}>
+          {!user ? (
+            <Loader type="Puff" />
+          ) : filteredTransactions.length > 0 ? (
+            filteredTransactions.map((t) => {
+              return (
+                <ZorkTransaction key={t.id} transaction={t} viewUser={user} />
+              );
+            })
+          ) : (
+            <div className={style.empty}>Nothing here :(</div>
+          )}
+        </main>
+      </div>
+    </>
   );
 };
 

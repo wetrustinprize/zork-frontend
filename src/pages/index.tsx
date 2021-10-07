@@ -7,7 +7,7 @@ const Landing: React.FC = () => {
   return (
     <>
       <Head>
-        <title>Zork - home</title>
+        <title>Zork - Home</title>
       </Head>
 
       <LandingHeader />
