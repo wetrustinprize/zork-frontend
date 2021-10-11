@@ -81,7 +81,7 @@ const ZorkUserCard: React.FC<IZorkUserCard> = ({ viewUser }: IZorkUserCard) => {
     setAllowInput(false);
 
     const response = await createRequest(access_token, {
-      email: viewUser.email,
+      to_id: viewUser.id,
       description: message,
       value: zorkValue,
     });
@@ -133,7 +133,7 @@ const ZorkUserCard: React.FC<IZorkUserCard> = ({ viewUser }: IZorkUserCard) => {
     }
 
     getData();
-  }, [viewUser]);
+  }, [viewUser, user]);
 
   return (
     <div className={style.zorkUserCard}>
