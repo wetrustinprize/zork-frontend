@@ -1,19 +1,19 @@
 import { api } from "src/utils/api";
 
 interface ICreateRequest {
-  email: string;
+  to_id: string;
   value: number;
   description?: string;
 }
 
 const createRequest = async (
   access_token: string,
-  { email, value, description = "" }: ICreateRequest
+  { to_id, value, description = "" }: ICreateRequest
 ): Promise<any> => {
   try {
     let response = await api.post(
       "/request",
-      { email, value, description },
+      { to_id, value, description },
       { headers: { Authorization: "Bearer " + access_token } }
     );
 
