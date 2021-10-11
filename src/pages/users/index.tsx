@@ -18,6 +18,8 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 
+import { IoMdSearch } from "react-icons/io";
+
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import UserProvider from "@components/UserProvider";
@@ -54,7 +56,7 @@ const Users: NextPageWithLayout = () => {
       id,
       email,
     });
-
+    console.log(response);
     if (!response.error) {
       setCookies("last_seen_user", response.id);
 
@@ -68,7 +70,7 @@ const Users: NextPageWithLayout = () => {
     async function getData() {
       const id = router.query.id || cookies.last_seen_user || undefined;
 
-      if (!id) {
+      if (!id && !viewUser) {
         setViewUser(undefined);
         return;
       } else {
@@ -85,6 +87,21 @@ const Users: NextPageWithLayout = () => {
         <title>Zork - Users</title>
       </Head>
       <main className={style.usersMain}>
+        <header>
+          <h1>Users</h1>
+
+          <form className={style.searchBar} onSubmit={handleFind}>
+            <IoMdSearch size={"40px"} />
+            <input
+              type="text"
+              placeholder="User email..."
+              onChange={(e) => {
+                setViewEmail(e.target.value);
+              }}
+            />
+            <ZorkButton text="Search" isSubmit />
+          </form>
+        </header>
         {!access_token ? (
           <div className={style.loading}>
             <Loader type="Puff" />
