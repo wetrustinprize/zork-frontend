@@ -31,7 +31,7 @@ const Transactions: NextPageWithLayout = () => {
 
   useEffect(() => {
     async function getData() {
-      const t = await getTransactions(access_token, { withID: "self" });
+      const t = await getTransactions(access_token);
       setTransactions(t);
     }
 
