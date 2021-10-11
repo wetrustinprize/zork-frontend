@@ -3,9 +3,9 @@
 
 <img src="./screenshots/index.png">
 <p align="center">
-    <span><img src="./screenshots/requests.png" height="178" /></span>
-    <span><img src="./screenshots/user.png" height="178" /></span>
-    <span><img src="./screenshots/global.png" height="178" /></span>
+    <span><img src="./screenshots/requests.png" height="128" /></span>
+    <span><img src="./screenshots/user.png" height="128" /></span>
+    <span><img src="./screenshots/global.png" height="128" /></span>
 </p>
 
 ---
