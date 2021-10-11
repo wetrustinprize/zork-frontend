@@ -1,7 +1,12 @@
 <h1 align="center">Ƶork Frontend</h1>
 <h4 align="center">made with: Next.Js</h4>
 
-<img src="./print.png">
+<img src="./screenshots/index.png">
+<p align="center">
+    <span><img src="./screenshots/requests.png" height="178" /></span>
+    <span><img src="./screenshots/user.png" height="178" /></span>
+    <span><img src="./screenshots/global.png" height="178" /></span>
+</p>
 
 ---
 
